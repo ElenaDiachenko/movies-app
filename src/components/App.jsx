@@ -1,16 +1,26 @@
+import { Routes, Route } from 'react-router-dom';
+import { Home } from 'pages/Home';
+import { NotFound } from 'pages/NotFound';
+import { Container, Header, Link } from './App.styled';
+
 export const App = () => {
+  // const response = fetchTrendingMovies();
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Container>
+      <Header>
+        <nav>
+          <Link to="/">Home</Link>
+          {/* <Link to="/about">About</Link>
+        <Link to="/products">Products</Link> */}
+        </nav>
+      </Header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/about" element={<About />} /> */}
+        {/* <Route path="/products" element={<Products />} /> */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Container>
   );
 };
