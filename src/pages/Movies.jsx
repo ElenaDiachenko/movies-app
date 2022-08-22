@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from '../components/App.styled';
+
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 
@@ -41,7 +43,7 @@ export const Movies = () => {
         {movies.map(({ id, title }) => {
           return (
             <li key={id}>
-              <a href="#">{title}</a>
+              <Link to={`${id}`}>{title}</Link>
             </li>
           );
         })}
