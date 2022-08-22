@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from '../components/App.styled';
+// import { Link } from '../components/App.styled';
 
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
+import { MoviesList } from '../components/MoviesList/MoviesList';
+import { Container } from 'components/Container/Container';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
@@ -39,7 +41,11 @@ export const Movies = () => {
   return (
     <main>
       <SearchBar onSubmit={handleSubmit} />
-      <ul>
+      <Container>
+        <MoviesList movies={movies} />
+      </Container>
+
+      {/* <ul>
         {movies.map(({ id, title }) => {
           return (
             <li key={id}>
@@ -47,7 +53,7 @@ export const Movies = () => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </main>
   );
 };
