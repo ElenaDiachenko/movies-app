@@ -1,3 +1,4 @@
+import { Link, Outlet } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
 import { Box } from '../../components/Box';
 import { Container } from 'components/Container/Container';
@@ -51,6 +52,15 @@ export const MovieCard = ({ movie }) => {
       <ContainerCard>
         <Box display="flex" flexDirection="column" gridGap={12} p={15}>
           <DescriptionName>Aditional information</DescriptionName>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+          <Outlet />
         </Box>
       </ContainerCard>
     </Container>

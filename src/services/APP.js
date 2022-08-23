@@ -22,3 +22,11 @@ export const fetchMovieById = async movieId => {
   );
   return response.data;
 };
+
+// api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+export const fetchCast = async movieId => {
+  const response = await axios.get(
+    `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data.cast;
+};

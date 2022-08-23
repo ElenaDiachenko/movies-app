@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { fetchMovieById } from 'services/APP';
+
 import { useState, useEffect } from 'react';
+import { fetchMovieById } from 'services/APP';
 import { Header } from 'components/Header/Header';
 import { Container } from 'components/Container/Container';
 import { MovieCard } from 'components/MovieCart/MovieCard';
