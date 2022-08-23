@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-// import { Link } from '../components/App.styled';
+import { Header } from 'components/Header/Header';
 
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
@@ -39,21 +39,15 @@ export const Movies = () => {
     setMovies([]);
   };
   return (
-    <main>
-      <SearchBar onSubmit={handleSubmit} />
-      <Container>
-        <MoviesList movies={movies} />
-      </Container>
-
-      {/* <ul>
-        {movies.map(({ id, title }) => {
-          return (
-            <li key={id}>
-              <Link to={`${id}`}>{title}</Link>
-            </li>
-          );
-        })}
-      </ul> */}
-    </main>
+    <>
+      <Header>
+        <SearchBar onSubmit={handleSubmit} />
+      </Header>
+      <main>
+        <Container>
+          <MoviesList movies={movies} />
+        </Container>
+      </main>
+    </>
   );
 };
