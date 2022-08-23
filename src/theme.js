@@ -26,7 +26,7 @@ export const theme = {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.125,
+    heading: 1.33,
   },
   borders: {
     none: 'none',

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { Container, Item, Image, Description } from './Cast.styled';
 import { fetchCast } from 'services/APP';
+import { IMG_PATH } from '../../pages/Home';
 
 export const Cast = () => {
   const { movieId } = useParams();
@@ -18,5 +19,17 @@ export const Cast = () => {
     }
   }, [movieId]);
 
-  return <div>{cast[0].name}</div>;
+  return (
+    <Container>
+      {cast.map(({ id, profile_path, name, character }) => {
+        return (
+          <Item key={id}>
+            <Image src={IMG_PATH + profile_path} alt={name} />
+            <Description>{name}</Description>
+            <Description>{character}</Description>
+          </Item>
+        );
+      })}
+    </Container>
+  );
 };
