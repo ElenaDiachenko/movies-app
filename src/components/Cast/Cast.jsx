@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Item, Image, Description } from './Cast.styled';
 import { fetchCast } from 'services/APP';
 import { IMG_PATH } from '../../pages/Home';
+import bgImage from '../../images/image.png';
 
 export const Cast = () => {
   const { movieId } = useParams();
@@ -24,9 +25,12 @@ export const Cast = () => {
       {cast.map(({ id, profile_path, name, character }) => {
         return (
           <Item key={id}>
-            <Image src={IMG_PATH + profile_path} alt={name} />
-            <Description>{name}</Description>
-            <Description>{character}</Description>
+            <Image
+              src={profile_path ? IMG_PATH + profile_path : bgImage}
+              alt={name}
+            />
+            <Description>Actor: {name}</Description>
+            <Description>Character: {character}</Description>
           </Item>
         );
       })}

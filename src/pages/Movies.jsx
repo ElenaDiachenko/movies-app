@@ -21,7 +21,6 @@ export const Movies = () => {
         setMovies(movies => [...movies, ...response]);
         setPage(page);
       })();
-      // if()
     } catch (error) {
       console.log(error.mesage);
     }

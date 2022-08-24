@@ -5,7 +5,6 @@ import { MovieDetails } from 'pages/MovieDetails';
 import { NotFound } from 'pages/NotFound';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
-// import { Container, Header, Link } from './App.styled';
 
 export const App = () => {
   return (

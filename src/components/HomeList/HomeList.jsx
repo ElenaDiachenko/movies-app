@@ -5,7 +5,6 @@ import {
   MovieTitle,
   Link,
 } from './HomeList.styled';
-// import { Container } from 'components/Container/Container';
 import { IMG_PATH } from '../../pages/Home';
 
 export const HomeList = ({ movies }) => {

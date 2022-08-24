@@ -6,7 +6,7 @@ export const theme = {
     background: '#fff',
     primary: '#07c',
     secondary: '#05a',
-    accent: '#609',
+    accent: '#3498db',
     muted: '#f6f6f6',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
@@ -22,6 +22,8 @@ export const theme = {
   },
   fontWeights: {
     normal: 400,
+    medium: 500,
+    semiBold: 600,
     bold: 700,
   },
   lineHeights: {
@@ -30,7 +32,7 @@ export const theme = {
   },
   borders: {
     none: 'none',
-    normal: '2px solid',
+    normal: '2px solid black',
   },
   radii: {
     none: '0',

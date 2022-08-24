@@ -29,7 +29,7 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 export const Description = styled.h2`
-  font-weight: 500;
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
 `;

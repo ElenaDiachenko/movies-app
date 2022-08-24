@@ -4,11 +4,9 @@ import { NavLink } from 'react-router-dom';
 export const MoviesContainer = styled.ul`
   display: grid;
   max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: ${p => p.theme.space[5]}px;
-  margin-top: ${p => p.theme.space[1]}px;
-  margin-bottom: ${p => p.theme.space[1]}px;
-  padding: ${p => p.theme.space[1]}px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: ${p => p.theme.space[4]}px;
+  padding: ${p => p.theme.space[2]}px;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -23,19 +21,19 @@ export const MovieItem = styled.li`
 `;
 export const MoviePoster = styled.img`
   width: 100%;
-  height: 400px;
+  height: auto;
   margin-bottom: ${p => p.theme.space[3]}px;
   object-fit: cover;
 `;
 export const MovieTitle = styled.h2`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.33;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.heading};
 `;
 export const Link = styled(NavLink)`
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: ${p => p.theme.radii.sm};
   text-decoration: none;
-  color: black;
-  font-weight: 500;
+  color: ${p => p.theme.colors.black};
+  font-weight: ${p => p.theme.fontWeights.medium};
 `;

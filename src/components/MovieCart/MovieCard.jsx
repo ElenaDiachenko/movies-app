@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
 import { Box } from '../../components/Box';
 import { Container } from 'components/Container/Container';
@@ -9,7 +9,7 @@ import {
   DescriptionName,
   DescriptionText,
   DescriptionTextItem,
-  // Link,
+  Link,
 } from './MovieCard.styled';
 
 export const MovieCard = ({ movie }) => {
@@ -52,14 +52,24 @@ export const MovieCard = ({ movie }) => {
       <ContainerCard>
         <Box display="flex" flexDirection="column" gridGap={12} p={15}>
           <DescriptionName>Aditional information</DescriptionName>
-          <ul>
-            <li>
+          <Box as="ul" display="flex" gridGap={12}>
+            <Box
+              as="li"
+              display="flex"
+              alightItems="center"
+              justifyContent="center"
+            >
               <Link to="cast">Cast</Link>
-            </li>
-            <li>
+            </Box>
+            <Box
+              as="li"
+              display="flex"
+              alightItems="center"
+              justifyContent="center"
+            >
               <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
+            </Box>
+          </Box>
           <Outlet />
         </Box>
       </ContainerCard>
