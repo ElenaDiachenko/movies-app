@@ -4,8 +4,8 @@ import { Form, Field } from 'formik';
 export const SearchForm = styled(Form)`
   display: flex;
   align-items: center;
-  width: 480px;
-  margin-left: auto;
+  max-width: 600px;
+  margin: 0 auto;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.sm};
   overflow: hidden;

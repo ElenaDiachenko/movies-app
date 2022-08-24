@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
 import { Box } from '../../components/Box';
-import { Container } from 'components/Container/Container';
 import {
   ContainerCard,
   MoviePoster,
@@ -17,7 +16,7 @@ export const MovieCard = ({ movie }) => {
     movie;
   // const releaseDate = release_date.split('-')[0];
   return (
-    <Container>
+    <>
       <ContainerCard>
         <MoviePoster src={IMG_PATH + poster_path} alt={title} />
 
@@ -73,6 +72,6 @@ export const MovieCard = ({ movie }) => {
           <Outlet />
         </Box>
       </ContainerCard>
-    </Container>
+    </>
   );
 };
