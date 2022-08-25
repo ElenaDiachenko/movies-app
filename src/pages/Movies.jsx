@@ -1,36 +1,35 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
-import { Loader } from 'components/Loader/Loader';
 
 export const Movies = () => {
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieQuery = searchParams.get('query');
+  // console.log(movieQuery);
 
   useEffect(() => {
-    if (!query) {
+    if (!movieQuery) {
       return;
     }
     try {
-      setLoading(true);
       (async function getMovies() {
-        const response = await fetchMoviesByKeyword(query, page);
+        const response = await fetchMoviesByKeyword(movieQuery, page);
         setMovies(movies => [...movies, ...response]);
         setPage(page);
-        setLoading(false);
       })();
     } catch (error) {
-      setLoading(false);
       console.log(error.mesage);
       toast.info('Oop! Something went wrong! Try again later!');
     }
-  }, [query, page]);
+  }, [movieQuery, page]);
 
-  const handleSubmit = ({ value }) => {
+  const handleSubmit = async ({ value }) => {
     if (value.trim().length === 0) {
       toast.info(
         'Sorry, there are no movies matching your search query. Please, try again'
@@ -38,13 +37,13 @@ export const Movies = () => {
       return;
     }
     setPage(1);
-    setQuery(value);
+    await setSearchParams(value !== '' ? { query: value } : {});
     setMovies([]);
   };
+
   return (
     <>
       <main>
-        {loading && <Loader />}
         <SearchBar onSubmit={handleSubmit} />
         {movies ? (
           <MoviesList movies={movies} />
