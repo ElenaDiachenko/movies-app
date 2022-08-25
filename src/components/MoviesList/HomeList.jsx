@@ -8,7 +8,7 @@ import {
 } from './MoviesList.styled';
 import { IMG_PATH } from '../../pages/Home';
 
-export const MoviesList = ({ movies }) => {
+export const HomeList = ({ movies }) => {
   const location = useLocation();
 
   return (
@@ -16,7 +16,7 @@ export const MoviesList = ({ movies }) => {
       {movies.map(({ id, title, poster_path }) => {
         return (
           <MovieItem key={id}>
-            <StyledLink to={`${id}`} state={{ from: location }}>
+            <StyledLink to={`movies/${id}`} state={{ from: location }}>
               <MoviePoster src={IMG_PATH + poster_path} alt={title} />
               <MovieTitle>{title}</MovieTitle>
             </StyledLink>

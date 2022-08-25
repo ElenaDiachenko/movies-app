@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MoviesList } from 'components/MoviesList/MoviesList';
+import { HomeList } from '../components/MoviesList/HomeList';
 import { fetchTrendingMovies } from 'services/APP';
 import { toast } from 'react-toastify';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
@@ -30,7 +30,7 @@ export const Home = () => {
         <>
           <h1>Trending today</h1>
           {movies ? (
-            <MoviesList movies={movies} />
+            <HomeList movies={movies} />
           ) : (
             <p>
               Sorry, there are no movies matching your search query. Please, try
