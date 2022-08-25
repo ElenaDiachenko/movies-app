@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { HiSearch } from 'react-icons/hi';
-import { SearchForm, Input, Button } from './SearchBar.styled';
+import { Container, SearchForm, Input, Button } from './SearchBar.styled';
 
 export const SearchBar = ({ onSubmit }) => {
   const handleSubmit = async (values, actions) => {
@@ -11,7 +11,7 @@ export const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <>
+    <Container>
       <Formik initialValues={{ value: '' }} onSubmit={handleSubmit}>
         {({ isSubmitting }) => {
           // console.log(isSubmitting);
@@ -32,7 +32,7 @@ export const SearchBar = ({ onSubmit }) => {
           );
         }}
       </Formik>
-    </>
+    </Container>
   );
 };
 

@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
+export const Container = styled.div`
+  top: 8px;
+  left: 0;
+  position: sticky;
+  z-index: 15;
+  margin-bottom: ${p => p.theme.space[4]}px;
+`;
 export const SearchForm = styled(Form)`
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
-  background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.sm};
   overflow: hidden;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
@@ -27,8 +33,8 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border: ${p => p.theme.borders.none};
   opacity: 0.8;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
