@@ -34,7 +34,9 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: ${p => p.theme.colors.black};
   font-weight: ${p => p.theme.fontWeights.medium};
-
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
   &.active {
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};

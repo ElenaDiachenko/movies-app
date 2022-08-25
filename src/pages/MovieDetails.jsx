@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-
+import { useParams, useLocation } from 'react-router-dom';
+import { BackLink } from 'components/BackLink/BackLink';
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from 'services/APP';
 import { MovieCard } from 'components/MovieCart/MovieCard';
@@ -7,7 +7,8 @@ import { MovieCard } from 'components/MovieCart/MovieCard';
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
-
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
   useEffect(() => {
     try {
       (async function getMovie() {
@@ -20,6 +21,7 @@ export const MovieDetails = () => {
   }, [movieId]);
   return (
     <>
+      <BackLink to={backLinkHref}>Back</BackLink>
       {movie ? (
         <MovieCard movie={movie} />
       ) : (
