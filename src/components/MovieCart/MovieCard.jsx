@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
+import bgImage from '../../images/image.png';
 import { Box } from '../../components/Box';
 import {
   ContainerCard,
@@ -18,7 +19,10 @@ export const MovieCard = ({ movie }) => {
   return (
     <>
       <ContainerCard>
-        <MoviePoster src={IMG_PATH + poster_path} alt={title} />
+        <MoviePoster
+          src={poster_path ? IMG_PATH + poster_path : bgImage}
+          alt={title}
+        />
 
         <Box display="flex" flexDirection="column" gridGap={12} p={30} mb={30}>
           <MovieTitle>{`${title} ${release_date} `}</MovieTitle>

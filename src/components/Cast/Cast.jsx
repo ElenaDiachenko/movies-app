@@ -5,7 +5,7 @@ import { fetchCast } from 'services/APP';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
@@ -37,3 +37,5 @@ export const Cast = () => {
     </Container>
   );
 };
+
+export default Cast;

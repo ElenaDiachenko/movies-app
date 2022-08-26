@@ -5,13 +5,11 @@ import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
 
-export const Movies = () => {
-  // const [query, setQuery] = useState('');
+const Movies = () => {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
-  // console.log(movieQuery);
 
   useEffect(() => {
     if (!movieQuery) {
@@ -57,3 +55,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

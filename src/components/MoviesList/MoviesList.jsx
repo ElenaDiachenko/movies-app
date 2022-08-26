@@ -7,6 +7,7 @@ import {
   StyledLink,
 } from './MoviesList.styled';
 import { IMG_PATH } from '../../pages/Home';
+import bgImage from '../../images/image.png';
 
 export const MoviesList = ({ movies }) => {
   const location = useLocation();
@@ -17,7 +18,10 @@ export const MoviesList = ({ movies }) => {
         return (
           <MovieItem key={id}>
             <StyledLink to={`${id}`} state={{ from: location }}>
-              <MoviePoster src={IMG_PATH + poster_path} alt={title} />
+              <MoviePoster
+                src={poster_path ? IMG_PATH + poster_path : bgImage}
+                alt={title}
+              />
               <MovieTitle>{title}</MovieTitle>
             </StyledLink>
           </MovieItem>

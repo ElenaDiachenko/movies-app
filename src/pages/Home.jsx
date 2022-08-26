@@ -4,7 +4,7 @@ import { fetchTrendingMovies } from 'services/APP';
 import { toast } from 'react-toastify';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -42,3 +42,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
