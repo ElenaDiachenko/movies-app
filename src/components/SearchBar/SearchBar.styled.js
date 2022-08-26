@@ -11,8 +11,8 @@ export const Container = styled.div`
 export const SearchForm = styled(Form)`
   display: flex;
   align-items: center;
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 50%;
+  margin-left: auto;
   border-radius: ${p => p.theme.radii.sm};
   overflow: hidden;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),

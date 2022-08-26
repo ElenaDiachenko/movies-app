@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
 import { Box } from '../../components/Box';
@@ -11,10 +12,12 @@ import {
   DescriptionTextItem,
   Link,
 } from './MovieCard.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const MovieCard = ({ movie }) => {
   const { poster_path, title, genres, release_date, vote_average, overview } =
     movie;
+  const location = useLocation();
   // const releaseDate = release_date.split('-')[0];
   return (
     <>
@@ -62,7 +65,9 @@ export const MovieCard = ({ movie }) => {
               alightItems="center"
               justifyContent="center"
             >
-              <Link to="cast">Cast</Link>
+              <Link to="cast" state={location.state}>
+                Cast
+              </Link>
             </Box>
             <Box
               as="li"
@@ -70,10 +75,14 @@ export const MovieCard = ({ movie }) => {
               alightItems="center"
               justifyContent="center"
             >
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" state={location.state}>
+                Reviews
+              </Link>
             </Box>
           </Box>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </Box>
       </ContainerCard>
     </>

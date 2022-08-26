@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { HomeList } from '../components/MoviesList/HomeList';
 import { fetchTrendingMovies } from 'services/APP';
+import { Box } from 'components/Box';
 import { toast } from 'react-toastify';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
@@ -13,7 +14,7 @@ const Home = () => {
         const response = await fetchTrendingMovies();
         if (response.length === 0) {
           toast.warning(
-            'Sorry, there are no images matching your search query. Please, try again'
+            'Sorry, there are no movies matching your search query. Please, try again'
           );
           return;
         }
@@ -28,15 +29,10 @@ const Home = () => {
     <>
       <main>
         <>
-          <h1>Trending today</h1>
-          {movies ? (
-            <HomeList movies={movies} />
-          ) : (
-            <p>
-              Sorry, there are no movies matching your search query. Please, try
-              again.
-            </p>
-          )}
+          <Box as="h1" mb={16}>
+            Trending today
+          </Box>
+          {movies && <HomeList movies={movies} />}
         </>
       </main>
     </>

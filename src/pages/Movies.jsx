@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
+import movieBg from '../images/background.jpg';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -43,14 +44,7 @@ const Movies = () => {
     <>
       <main>
         <SearchBar onSubmit={handleSubmit} />
-        {movies ? (
-          <MoviesList movies={movies} />
-        ) : (
-          <p>
-            Sorry, there are no movies matching your search query. Please, try
-            again.
-          </p>
-        )}
+        {movies && <MoviesList movies={movies} />}
       </main>
     </>
   );
