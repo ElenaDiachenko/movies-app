@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Container, Item, Image, Description } from './Cast.styled';
 import { fetchCast } from 'services/APP';
 import { IMG_PATH } from '../../pages/Home';
@@ -36,6 +37,13 @@ const Cast = () => {
       })}
     </Container>
   );
+};
+
+Cast.propTypes = {
+  profile_path: PropTypes.string,
+  name: PropTypes.string,
+  character: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default Cast;

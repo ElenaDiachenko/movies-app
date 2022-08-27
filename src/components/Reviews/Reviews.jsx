@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchReviews } from 'services/APP';
 import { Container, Item, AuthorName, Content } from './Reviews.styled';
 import { Box } from 'components/Box';
@@ -39,6 +40,12 @@ const Reviews = () => {
       )}
     </>
   );
+};
+
+Reviews.propTypes = {
+  author: PropTypes.string,
+  content: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default Reviews;

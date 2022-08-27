@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { fetchMoviesByKeyword } from 'services/APP';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
-import movieBg from '../images/background.jpg';
 
 const Movies = () => {
   const [page, setPage] = useState(1);

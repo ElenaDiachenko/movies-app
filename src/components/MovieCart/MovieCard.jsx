@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
 import { Box } from '../../components/Box';
@@ -18,7 +19,7 @@ export const MovieCard = ({ movie }) => {
   const { poster_path, title, genres, release_date, vote_average, overview } =
     movie;
   const location = useLocation();
-  // const releaseDate = release_date.split('-')[0];
+
   return (
     <>
       <ContainerCard>
@@ -28,7 +29,9 @@ export const MovieCard = ({ movie }) => {
         />
 
         <Box display="flex" flexDirection="column" gridGap={12} p={30} mb={30}>
-          <MovieTitle>{`${title} ${release_date} `}</MovieTitle>
+          <MovieTitle>{`${title} (${
+            release_date ? release_date.slice(0, 4) : ''
+          })`}</MovieTitle>
 
           <Box display="flex" gridGap={16}>
             <DescriptionName>User Score:</DescriptionName>
@@ -87,4 +90,15 @@ export const MovieCard = ({ movie }) => {
       </ContainerCard>
     </>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }).isRequired,
 };
