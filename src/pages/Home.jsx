@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { HomeList } from '../components/MoviesList/HomeList';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import { fetchTrendingMovies } from 'services/APP';
 import { Box } from 'components/Box';
 import { toast } from 'react-toastify';
@@ -32,7 +32,7 @@ const Home = () => {
           <Box as="h1" mb={16}>
             Trending today
           </Box>
-          {movies && <HomeList movies={movies} />}
+          {movies && <MoviesList movies={movies} />}
         </>
       </main>
     </>
