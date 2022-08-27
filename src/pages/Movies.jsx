@@ -18,6 +18,12 @@ const Movies = () => {
     try {
       (async function getMovies() {
         const response = await fetchMoviesByKeyword(movieQuery, page);
+        if (response.length === 0) {
+          toast.info(
+            'Sorry, there are no movies matching your search query. Please, try again'
+          );
+          return;
+        }
         setMovies(movies => [...movies, ...response]);
         setPage(page);
       })();
