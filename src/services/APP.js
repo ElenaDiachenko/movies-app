@@ -13,7 +13,7 @@ export const fetchMoviesByKeyword = async (query, page) => {
   const response = await axios.get(
     `search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
   );
-  return response.data.results;
+  return response.data;
 };
 
 export const fetchMovieById = async movieId => {
