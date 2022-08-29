@@ -49,7 +49,6 @@ export const Link = styled(NavLink)`
     transform: scale(1.03);
   }
   &.active {
-    color: ${p => p.theme.colors.white};
-    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accent};
   }
 `;

@@ -18,7 +18,7 @@ const Reviews = () => {
         const data = await fetchReviews(movieId);
         if (data.length === 0) {
           setStatus('rejected');
-          toast.info('Sorry, there are no cast yet');
+          toast.info('Sorry, there are no reviews yet');
           return;
         }
         setStatus('resolved');
