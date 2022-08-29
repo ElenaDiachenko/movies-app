@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-import { fetchTrendingMovies } from 'services/APP';
+import { fetchTrendingMovies } from 'services/API';
 import { Box } from 'components/Box';
 import { toast } from 'react-toastify';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';

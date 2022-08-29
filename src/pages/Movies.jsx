@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { fetchMoviesByKeyword } from 'services/APP';
+import { fetchMoviesByKeyword } from 'services/API';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
 import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
+import { Loader } from 'components/Loader/Loader';
+import { Box } from 'components/Box';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
   const [totalMovies, setTotalMovies] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
 
@@ -18,24 +21,27 @@ const Movies = () => {
       return;
     }
     try {
+      setStatus('pending');
       (async function getMovies() {
         const { results, total_pages } = await fetchMoviesByKeyword(
           movieQuery,
           page
         );
         if (results.length === 0) {
+          setStatus('rejected');
           toast.info(
             'Sorry, there are no movies matching your search query. Please, try again'
           );
           return;
         }
+        setStatus('resolved');
         setMovies(movies => [...movies, ...results]);
         setPage(page);
         setTotalMovies(total_pages);
       })();
     } catch (error) {
+      setStatus('rejected');
       console.log(error.mesage);
-      toast.info('Oop! Something went wrong! Try again later!');
     }
   }, [movieQuery, page]);
 
@@ -59,9 +65,16 @@ const Movies = () => {
     <>
       <main>
         <SearchBar onSubmit={handleSubmit} />
-        {movies && <MoviesList movies={movies} />}
-        {totalMovies - movies.length > 0 ? (
+        {status === 'pending' && <Loader />}
+        {status === 'rejected' && (
+          <Box>Oop! Something went wrong! Try again later</Box>
+        )}
+        <MoviesList movies={movies} />
+        {status === 'resolved' && totalMovies - movies.length > 0 ? (
           <LoadMoreButton onClick={loadMore} />
+        ) : null}
+        {status === 'resolved' && totalMovies - movies.length <= 0 ? (
+          <Box>We're sorry, but you've reached the end of search results.</Box>
         ) : null}
       </main>
     </>
