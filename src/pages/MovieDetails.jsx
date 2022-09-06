@@ -39,7 +39,7 @@ const MovieDetails = () => {
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later!</Box>
       )}
-      <MovieCard movie={movie} />
+      {status === 'resolved' && <MovieCard movie={movie} />}
     </>
   );
 };
