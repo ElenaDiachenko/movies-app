@@ -1,7 +1,7 @@
-//trending, genre - number
 import { ResultDTO } from './IMoviesDTO';
 import { IMovieByIdDTO } from './IMovieByIdTDO';
 import { ICast } from './ICreditsDTO';
+import { IReview } from './IReviewsDTO';
 
 export interface IMovieData {
   id: ResultDTO['id'];
@@ -32,4 +32,10 @@ export interface ICastData {
   profile_path: ICast['profile_path'];
   name: ICast['name'];
   character: ICast['character'];
+}
+
+export interface IReviewData {
+  id: IReview['id'];
+  author: IReview['author'];
+  content: IReview['content'];
 }

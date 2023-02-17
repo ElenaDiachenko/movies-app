@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { fetchReviews } from 'services/API';
 import { Container, Item, AuthorName, Content } from './Reviews.styled';
 import { Loader } from 'components/Loader/Loader';
+import { IReviewData } from 'interfaces/IMovieData';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<IReviewData[] | []>([]);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
+    if (!movieId) return;
     try {
       setStatus('pending');
       (async function getReviews() {
@@ -26,7 +28,7 @@ const Reviews = () => {
       })();
     } catch (error) {
       setStatus('rejected');
-      console.log(error.message);
+      console.log((error as AxiosError).message);
     }
   }, [movieId]);
 
@@ -48,12 +50,6 @@ const Reviews = () => {
       )}
     </>
   );
-};
-
-Reviews.propTypes = {
-  author: PropTypes.string,
-  content: PropTypes.string,
-  id: PropTypes.number,
 };
 
 export default Reviews;
