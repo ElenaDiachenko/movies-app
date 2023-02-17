@@ -1,6 +1,7 @@
 //trending, genre - number
 import { ResultDTO } from './IMoviesDTO';
 import { IMovieByIdDTO } from './IMovieByIdTDO';
+import { ICast } from './ICreditsDTO';
 
 export interface IMovieData {
   id: ResultDTO['id'];
@@ -24,4 +25,11 @@ export interface IMovieByIdData {
 export interface IMovieDataByKeyword {
   total_pages: number;
   results: IMovieData[];
+}
+
+export interface ICastData {
+  id: ICast['id'];
+  profile_path: ICast['profile_path'];
+  name: ICast['name'];
+  character: ICast['character'];
 }

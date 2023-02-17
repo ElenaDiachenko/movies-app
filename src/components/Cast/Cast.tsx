@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { Container, Item, Image, Description } from './Cast.styled';
 import { Loader } from 'components/Loader/Loader';
 import { fetchCast } from 'services/API';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
+import { ICastData } from 'interfaces/IMovieData';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState<ICastData[] | []>([]);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
+    if (!movieId) return;
+
     try {
       setStatus('pending');
       (async function getCast() {
@@ -28,7 +31,7 @@ const Cast = () => {
       })();
     } catch (error) {
       setStatus('rejected');
-      console.log(error.message);
+      console.log((error as AxiosError).message);
     }
   }, [movieId]);
 
@@ -54,13 +57,6 @@ const Cast = () => {
       )}
     </>
   );
-};
-
-Cast.propTypes = {
-  profile_path: PropTypes.string,
-  name: PropTypes.string,
-  character: PropTypes.string,
-  id: PropTypes.number,
 };
 
 export default Cast;

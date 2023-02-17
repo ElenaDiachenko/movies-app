@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IMoviesDTO } from 'interfaces/IMoviesDTO';
 import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
 import { IMovieDataByKeyword } from 'interfaces/IMovieData';
+import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 
 axios.defaults.baseURL = `https://api.themoviedb.org/3/`;
 
@@ -59,11 +60,18 @@ export const fetchMovieById = async (movieId: string) => {
   return transformedData;
 };
 
-export const fetchCast = async (movieId: number) => {
-  const response = await axios.get(
+export const fetchCast = async (movieId: string) => {
+  const { data } = await axios.get<ICreditsDTO>(
     `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
-  return response.data.cast;
+  const response = data.cast;
+  const transformedData = response.map(it => ({
+    id: it.id,
+    profile_path: it.profile_path,
+    name: it.name,
+    character: it.character,
+  }));
+  return transformedData;
 };
 
 export const fetchReviews = async (movieId: number) => {
