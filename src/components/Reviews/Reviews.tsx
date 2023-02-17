@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import { fetchReviews } from 'services/API';
+import { requests } from 'services/API';
 import { Container, Item, AuthorName, Content } from './Reviews.styled';
 import { Loader } from 'components/Loader/Loader';
 import { IReviewData } from 'interfaces/IMovieData';
@@ -17,7 +17,7 @@ const Reviews = () => {
     try {
       setStatus('pending');
       (async function getReviews() {
-        const data = await fetchReviews(movieId);
+        const data = await requests.fetchReviews(movieId);
         if (data.length === 0) {
           setStatus('rejected');
           toast.info('Sorry, there are no reviews yet');

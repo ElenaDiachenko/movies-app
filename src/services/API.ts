@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IMoviesDTO } from 'interfaces/IMoviesDTO';
+import { IMoviesDTO, ResultDTO } from 'interfaces/IMoviesDTO';
 import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
 import { IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { ICreditsDTO } from 'interfaces/ICreditsDTO';
@@ -7,15 +7,10 @@ import { IReviewsDTO } from 'interfaces/IReviewsDTO';
 
 axios.defaults.baseURL = `https://api.themoviedb.org/3/`;
 
-const API_KEY = 'a5f5962e6f7f3d792e77e5ce1e0a6398';
+const API_KEY = process.env.REACT_APP_MOVIE_IMDB_API_KEY;
 
-export const fetchTrendingMovies = async () => {
-  const { data } = await axios.get<IMoviesDTO>(
-    `trending/movie/day?api_key=${API_KEY}`
-  );
-  const response = data.results;
-
-  const transformedData = response.map(it => ({
+const getBaseTransformedData = (data: ResultDTO[]) =>
+  data.map(it => ({
     id: it.id,
     poster_path: it.poster_path,
     title: it.title,
@@ -24,10 +19,17 @@ export const fetchTrendingMovies = async () => {
     overview: it.overview,
     genre_ids: it.genre_ids,
   }));
+
+const fetchTrendingMovies = async () => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `trending/movie/day?api_key=${API_KEY}`
+  );
+  const response = data.results;
+  const transformedData = getBaseTransformedData(response);
   return transformedData;
 };
 
-export const fetchMoviesByKeyword = async (query: string, page: number) => {
+const fetchMoviesByKeyword = async (query: string, page: number) => {
   const { data } = await axios.get<IMoviesDTO>(
     `search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
   );
@@ -46,7 +48,7 @@ export const fetchMoviesByKeyword = async (query: string, page: number) => {
   return transformedData;
 };
 
-export const fetchMovieById = async (movieId: string) => {
+const fetchMovieById = async (movieId: string) => {
   const { data } = await axios.get<IMovieByIdDTO>(
     `movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
@@ -61,7 +63,7 @@ export const fetchMovieById = async (movieId: string) => {
   return transformedData;
 };
 
-export const fetchCast = async (movieId: string) => {
+const fetchCast = async (movieId: string) => {
   const { data } = await axios.get<ICreditsDTO>(
     `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
@@ -75,7 +77,7 @@ export const fetchCast = async (movieId: string) => {
   return transformedData;
 };
 
-export const fetchReviews = async (movieId: string) => {
+const fetchReviews = async (movieId: string) => {
   const { data } = await axios.get<IReviewsDTO>(
     `movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
   );
@@ -86,4 +88,52 @@ export const fetchReviews = async (movieId: string) => {
     content: it.content,
   }));
   return transformedData;
+};
+
+const fetchPopularMovies = async () => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  const response = data.results;
+  const transformedData = getBaseTransformedData(response);
+  return transformedData;
+};
+
+const fetchTopRatedMovies = async () => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  const response = data.results;
+  const transformedData = getBaseTransformedData(response);
+  return transformedData;
+};
+
+const fetchUpcomingMovies = async () => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  const response = data.results;
+  const transformedData = getBaseTransformedData(response);
+  return transformedData;
+};
+
+const fetchNowPlayingMovies = async () => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  const response = data.results;
+  const transformedData = getBaseTransformedData(response);
+  return transformedData;
+};
+
+export const requests = {
+  fetchTrendingMovies,
+  fetchMoviesByKeyword,
+  fetchMovieById,
+  fetchCast,
+  fetchReviews,
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchUpcomingMovies,
+  fetchNowPlayingMovies,
 };

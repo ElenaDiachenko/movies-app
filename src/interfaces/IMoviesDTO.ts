@@ -1,6 +1,7 @@
 export interface IMoviesDTO {
   page: number;
   results: ResultDTO[];
+  dates?: any;
   total_pages: number;
   total_results: number;
 }
@@ -14,7 +15,7 @@ export interface ResultDTO {
   original_title: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type?: string;
   genre_ids: number[];
   popularity: number;
   release_date: string;

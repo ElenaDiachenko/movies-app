@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { fetchMoviesByKeyword } from 'services/API';
+import { requests } from 'services/API';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
 import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
@@ -27,7 +27,7 @@ const Movies = () => {
       setStatus('pending');
       (async function getMovies() {
         const { results, total_pages }: IMovieDataByKeyword =
-          await fetchMoviesByKeyword(movieQuery, page);
+          await requests.fetchMoviesByKeyword(movieQuery, page);
         if (results.length === 0) {
           setStatus('rejected');
           toast.info(

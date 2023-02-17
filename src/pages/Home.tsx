@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
 import { IMovieData } from 'interfaces/IMovieData';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-import { fetchTrendingMovies } from 'services/API';
+import { requests } from 'services/API';
 import { Box } from 'components/Box';
 import { Loader } from 'components/Loader/Loader';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
@@ -15,7 +15,7 @@ const Home = () => {
     try {
       setStatus('pending');
       (async function getMovies() {
-        const response = await fetchTrendingMovies();
+        const response = await requests.fetchTrendingMovies();
         if (response.length === 0) {
           setStatus('rejected');
           return;

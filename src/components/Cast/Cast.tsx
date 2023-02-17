@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { Container, Item, Image, Description } from './Cast.styled';
 import { Loader } from 'components/Loader/Loader';
-import { fetchCast } from 'services/API';
+import { requests } from 'services/API';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
 import { ICastData } from 'interfaces/IMovieData';
@@ -20,7 +20,7 @@ const Cast = () => {
     try {
       setStatus('pending');
       (async function getCast() {
-        const data = await fetchCast(movieId);
+        const data = await requests.fetchCast(movieId);
         if (data.length === 0) {
           setStatus('rejected');
           toast.info('Sorry, there are no cast yet');

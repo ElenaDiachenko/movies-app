@@ -2,7 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { BackLink } from 'components/BackLink/BackLink';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { fetchMovieById } from 'services/API';
+import { requests } from 'services/API';
 import { MovieCard } from 'components/MovieCart/MovieCard';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
@@ -27,7 +27,7 @@ const MovieDetails = () => {
     try {
       setStatus('pending');
       (async function getMovie() {
-        const data = await fetchMovieById(movieId);
+        const data = await requests.fetchMovieById(movieId);
         if (Object.keys(data).length === 0) {
           setStatus('rejected');
           toast.info('Sorry, there are no  movie details ');
