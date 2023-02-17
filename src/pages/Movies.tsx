@@ -7,11 +7,14 @@ import { MoviesList } from '../components/MoviesList/MoviesList';
 import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
+import { IMovieData } from 'interfaces/IMovieData';
+import { AxiosError } from 'axios';
+import { IFormValues } from 'components/SearchBar/SearchBar';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const [totalMovies, setTotalMovies] = useState(null);
-  const [movies, setMovies] = useState([]);
+  const [totalMovies, setTotalMovies] = useState<number | 0>(0);
+  const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
@@ -41,7 +44,7 @@ const Movies = () => {
       })();
     } catch (error) {
       setStatus('rejected');
-      console.log(error.mesage);
+      console.log((error as AxiosError).message);
     }
   }, [movieQuery, page]);
 
@@ -49,7 +52,7 @@ const Movies = () => {
     setPage(page => page + 1);
   };
 
-  const handleSubmit = async ({ value }) => {
+  const handleSubmit = async ({ value }: IFormValues) => {
     if (value.trim().length === 0) {
       toast.info(
         'Sorry, there are no movies matching your search query. Please, try again'
@@ -68,7 +71,7 @@ const Movies = () => {
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later</Box>
       )}
-      <MoviesList movies={movies} />
+      {status === 'resolved' && <MoviesList movies={movies} />}
       {status === 'resolved' && totalMovies - movies.length > 0 ? (
         <LoadMoreButton onClick={loadMore} />
       ) : null}

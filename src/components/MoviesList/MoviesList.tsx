@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {
   MovieItem,
   MoviesContainer,
@@ -9,8 +8,9 @@ import {
 } from './MoviesList.styled';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
+import { IMovieData } from 'interfaces/IMovieData';
 
-export const MoviesList = ({ movies }) => {
+export const MoviesList = ({ movies }: { movies: IMovieData[] }) => {
   const location = useLocation();
 
   return (
@@ -30,14 +30,4 @@ export const MoviesList = ({ movies }) => {
       })}
     </MoviesContainer>
   );
-};
-
-MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string,
-      poster_path: PropTypes.string,
-    })
-  ).isRequired,
 };

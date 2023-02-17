@@ -1,20 +1,35 @@
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 import { Formik } from 'formik';
 import { HiSearch } from 'react-icons/hi';
 import { Container, SearchForm, Input, Button } from './SearchBar.styled';
 
-export const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = async (values, actions) => {
+export interface IFormValues {
+  value: string;
+}
+
+const initialValues = {
+  value: '',
+};
+
+interface SearchBarProps {
+  onSubmit: (values: IFormValues) => void;
+}
+
+export const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const handleSubmit = async (
+    values: IFormValues,
+    actions: { setSubmitting: (arg0: boolean) => void; resetForm: () => void }
+  ) => {
     await onSubmit(values);
+
     actions.setSubmitting(false);
     actions.resetForm();
   };
 
   return (
     <Container>
-      <Formik initialValues={{ value: '' }} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => {
-          // console.log(isSubmitting);
           return (
             <SearchForm>
               <Button type="submit" disabled={isSubmitting}>
@@ -34,8 +49,4 @@ export const SearchBar = ({ onSubmit }) => {
       </Formik>
     </Container>
   );
-};
-
-SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };

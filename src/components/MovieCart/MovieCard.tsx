@@ -1,9 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense, FC } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
-import { Box } from '../../components/Box';
+import { Box } from '../Box';
 import {
   ContainerCard,
   MoviePoster,
@@ -15,9 +14,26 @@ import {
 } from './MovieCard.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const MovieCard = ({ movie }) => {
-  const { poster_path, title, genres, release_date, vote_average, overview } =
-    movie;
+type Genre = {
+  id: 'number';
+  name: 'string';
+};
+interface MovieCardProps {
+  poster_path: string;
+  title: string;
+  release_date: string;
+  vote_average: number;
+  overview: string;
+  genres: Genre[];
+}
+export const MovieCard: FC<MovieCardProps> = ({
+  poster_path,
+  title,
+  genres,
+  release_date,
+  vote_average,
+  overview,
+}) => {
   const location = useLocation();
 
   return (
@@ -65,7 +81,7 @@ export const MovieCard = ({ movie }) => {
             <Box
               as="li"
               display="flex"
-              alightItems="center"
+              alignItems="center"
               justifyContent="center"
             >
               <Link to="cast" state={location.state}>
@@ -75,7 +91,7 @@ export const MovieCard = ({ movie }) => {
             <Box
               as="li"
               display="flex"
-              alightItems="center"
+              alignItems="center"
               justifyContent="center"
             >
               <Link to="reviews" state={location.state}>
@@ -90,15 +106,4 @@ export const MovieCard = ({ movie }) => {
       </ContainerCard>
     </>
   );
-};
-
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    release_date: PropTypes.string,
-    vote_average: PropTypes.number,
-    overview: PropTypes.string,
-    genres: PropTypes.array,
-  }).isRequired,
 };
