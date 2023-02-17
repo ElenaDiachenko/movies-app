@@ -1,4 +1,4 @@
-import { Suspense, FC } from 'react';
+import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { IMG_PATH } from '../../pages/Home';
 import bgImage from '../../images/image.png';
@@ -13,27 +13,12 @@ import {
   Link,
 } from './MovieCard.styled';
 import { Loader } from 'components/Loader/Loader';
+import { IMovieByIdData } from 'interfaces/IMovieData';
 
-type Genre = {
-  id: 'number';
-  name: 'string';
-};
-interface MovieCardProps {
-  poster_path: string;
-  title: string;
-  release_date: string;
-  vote_average: number;
-  overview: string;
-  genres: Genre[];
-}
-export const MovieCard: FC<MovieCardProps> = ({
-  poster_path,
-  title,
-  genres,
-  release_date,
-  vote_average,
-  overview,
-}) => {
+export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
+  const { poster_path, title, release_date, vote_average, overview, genres } =
+    movie;
+
   const location = useLocation();
 
   return (
@@ -51,7 +36,9 @@ export const MovieCard: FC<MovieCardProps> = ({
 
           <Box display="flex" gridGap={16}>
             <DescriptionName>User Score:</DescriptionName>
-            <DescriptionText>{(vote_average * 10).toFixed(0)}%</DescriptionText>
+            <DescriptionText>
+              {vote_average ? (vote_average * 10).toFixed(0) : 0}%
+            </DescriptionText>
           </Box>
           <Box display="flex" gridGap={12} flexDirection="column">
             <DescriptionName>Overview</DescriptionName>

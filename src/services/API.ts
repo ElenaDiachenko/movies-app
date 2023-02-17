@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ITrendingDTO } from 'interfaces/ITrendingDTO';
+import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
 
 axios.defaults.baseURL = `https://api.themoviedb.org/3/`;
 
@@ -30,11 +31,19 @@ export const fetchMoviesByKeyword = async (query: string, page: number) => {
   return response.data;
 };
 
-export const fetchMovieById = async (movieId: number) => {
-  const response = await axios.get(
+export const fetchMovieById = async (movieId: string) => {
+  const { data } = await axios.get<IMovieByIdDTO>(
     `movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
-  return response.data;
+  const transformedData = {
+    poster_path: data.poster_path,
+    title: data.title,
+    release_date: data.release_date,
+    vote_average: data.vote_average,
+    overview: data.overview,
+    genres: data.genres,
+  };
+  return transformedData;
 };
 
 // api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US

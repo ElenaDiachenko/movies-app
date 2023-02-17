@@ -6,19 +6,29 @@ import { fetchMovieById } from 'services/API';
 import { MovieCard } from 'components/MovieCart/MovieCard';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
+import { IMovieByIdData } from 'interfaces/IMovieData';
+import { AxiosError } from 'axios';
+
+type LocationProps = {
+  state: {
+    from: Location;
+  };
+};
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState<IMovieByIdData>();
   const [status, setStatus] = useState('idle');
-  const location = useLocation();
+  const location = useLocation() as unknown as LocationProps;
   const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
+    if (!movieId) return;
     try {
       setStatus('pending');
       (async function getMovie() {
         const data = await fetchMovieById(movieId);
+        console.log(data)
         if (Object.keys(data).length === 0) {
           setStatus('rejected');
           toast.info('Sorry, there are no  movie details ');
@@ -29,7 +39,7 @@ const MovieDetails = () => {
       })();
     } catch (error) {
       setStatus('rejected');
-      console.log(error.message);
+      console.log((error as AxiosError).message);
     }
   }, [movieId]);
   return (
@@ -39,7 +49,7 @@ const MovieDetails = () => {
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later!</Box>
       )}
-      {status === 'resolved' && <MovieCard movie={movie} />}
+      {status === 'resolved' && movie && <MovieCard movie={movie} />}
     </>
   );
 };
