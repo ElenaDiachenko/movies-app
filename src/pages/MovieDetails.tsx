@@ -9,9 +9,9 @@ import { Box } from 'components/Box';
 import { IMovieByIdData } from 'interfaces/IMovieData';
 import { AxiosError } from 'axios';
 
-type LocationProps = {
+export type LocationProps = {
   state: {
-    from: Location;
+    from: string;
   };
 };
 
