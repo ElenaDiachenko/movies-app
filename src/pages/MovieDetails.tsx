@@ -28,7 +28,6 @@ const MovieDetails = () => {
       setStatus('pending');
       (async function getMovie() {
         const data = await fetchMovieById(movieId);
-        console.log(data)
         if (Object.keys(data).length === 0) {
           setStatus('rejected');
           toast.info('Sorry, there are no  movie details ');

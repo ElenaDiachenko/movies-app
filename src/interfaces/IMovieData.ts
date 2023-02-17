@@ -1,5 +1,5 @@
 //trending, genre - number
-import { ResultDTO } from './ITrendingDTO';
+import { ResultDTO } from './IMoviesDTO';
 import { IMovieByIdDTO } from './IMovieByIdTDO';
 
 export interface IMovieData {
@@ -10,7 +10,6 @@ export interface IMovieData {
   vote_average?: ResultDTO['vote_average'];
   overview?: ResultDTO['overview'];
   genres_ids?: ResultDTO['genre_ids'];
-  genres?: string[];
 }
 
 export interface IMovieByIdData {
@@ -23,9 +22,6 @@ export interface IMovieByIdData {
 }
 
 export interface IMovieDataByKeyword {
-  id?: number;
-  page: number;
   total_pages: number;
-  total_results: number;
   results: IMovieData[];
 }

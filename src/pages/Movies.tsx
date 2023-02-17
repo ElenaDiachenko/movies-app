@@ -7,8 +7,8 @@ import { MoviesList } from '../components/MoviesList/MoviesList';
 import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
-import { IMovieData } from 'interfaces/IMovieData';
 import { AxiosError } from 'axios';
+import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
 
 const Movies = () => {
@@ -26,10 +26,8 @@ const Movies = () => {
     try {
       setStatus('pending');
       (async function getMovies() {
-        const { results, total_pages } = await fetchMoviesByKeyword(
-          movieQuery,
-          page
-        );
+        const { results, total_pages }: IMovieDataByKeyword =
+          await fetchMoviesByKeyword(movieQuery, page);
         if (results.length === 0) {
           setStatus('rejected');
           toast.info(

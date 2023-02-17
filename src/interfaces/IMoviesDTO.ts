@@ -1,4 +1,4 @@
-export interface ITrendingDTO {
+export interface IMoviesDTO {
   page: number;
   results: ResultDTO[];
   total_pages: number;
