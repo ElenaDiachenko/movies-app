@@ -10,6 +10,7 @@ import { Box } from 'components/Box';
 import { AxiosError } from 'axios';
 import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
+import { MovieRow } from 'components/MovieRow/MovieRow';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -18,6 +19,13 @@ const Movies = () => {
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
+
+  const movieRows = [
+    { id: '1', title: 'UpComming', fetchData: requests.fetchUpcomingMovies },
+    { id: '2', title: 'NowPlaying', fetchData: requests.fetchNowPlayingMovies },
+    { id: '3', title: 'TopRated', fetchData: requests.fetchTopRatedMovies },
+    { id: '4', title: 'Popular', fetchData: requests.fetchPopularMovies },
+  ];
 
   useEffect(() => {
     if (!movieQuery) {
@@ -76,6 +84,15 @@ const Movies = () => {
       {status === 'resolved' && totalMovies - movies.length <= 0 ? (
         <Box>We're sorry, but you've reached the end of search results.</Box>
       ) : null}
+
+      {movieRows.map(row => (
+        <MovieRow
+          key={row.id}
+          rowId={row.id}
+          title={row.title}
+          fetchData={row.fetchData}
+        />
+      ))}
     </main>
   );
 };
