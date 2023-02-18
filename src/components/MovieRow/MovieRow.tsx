@@ -1,7 +1,10 @@
 import { FC, useState, useEffect } from 'react';
+import { AxiosError } from 'axios';
 import { IMovieData } from 'interfaces/IMovieData';
 import { MovieItem } from 'components/MovieItem/MovieItem';
-import { AxiosError } from 'axios';
+import { Title, RowBox, Slider } from './MovieRow.styled';
+import { Loader } from 'components/Loader/Loader';
+import { Box } from 'components/Box';
 
 interface MovieRowProps {
   title: string;
@@ -32,5 +35,31 @@ export const MovieRow: FC<MovieRowProps> = ({ title, fetchData, rowId }) => {
     }
   }, [fetchData]);
 
-  return <div>MovieRow</div>;
+  //   const slideLeft = () => {
+  //     var slider = document.getElementById('slider' + rowId);
+  //     slider.scrollLeft = slider.scrollLeft - 500;
+  //   };
+  //   const slideRight = () => {
+  //     var slider = document.getElementById('slider' + rowId);
+  //     slider.scrollLeft = slider.scrollLeft + 500;
+  //   };
+
+  return (
+    <>
+      {status === 'pending' && <Loader />}
+      {status === 'rejected' && (
+        <Box>Oop! Something went wrong! Try again later</Box>
+      )}
+      <>
+        <Title>{title}</Title>
+        <RowBox>
+          <Slider>
+            {movies.map((movie, id) => (
+              <MovieItem key={id} movie={movie} />
+            ))}
+          </Slider>
+        </RowBox>
+      </>
+    </>
+  );
 };

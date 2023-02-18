@@ -85,14 +85,16 @@ const Movies = () => {
         <Box>We're sorry, but you've reached the end of search results.</Box>
       ) : null}
 
-      {movieRows.map(row => (
-        <MovieRow
-          key={row.id}
-          rowId={row.id}
-          title={row.title}
-          fetchData={row.fetchData}
-        />
-      ))}
+      {status !== 'resolved' &&
+        !movieQuery &&
+        movieRows.map(row => (
+          <MovieRow
+            key={row.id}
+            rowId={row.id}
+            title={row.title}
+            fetchData={row.fetchData}
+          />
+        ))}
     </main>
   );
 };
