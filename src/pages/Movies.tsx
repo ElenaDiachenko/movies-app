@@ -71,7 +71,7 @@ const Movies = () => {
   };
 
   return (
-    <main>
+    <main style={{ width: '100%' }}>
       <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (

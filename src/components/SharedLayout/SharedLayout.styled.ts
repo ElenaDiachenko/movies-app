@@ -5,7 +5,8 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   padding: 0 ${p => p.theme.space[4]}px;
-  max-width: 1200px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
 `;
 export const HeaderWrap = styled.header`
@@ -16,7 +17,6 @@ export const HeaderWrap = styled.header`
   min-height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: ${p => p.theme.space[3]}px 0;
   background-color: ${p => p.theme.colors.white};
 
@@ -37,7 +37,7 @@ export const Link = styled(NavLink)`
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover:not(.active),
-  :focus-visible:not(.active)  {
+  :focus-visible:not(.active) {
     color: ${p => p.theme.colors.accent};
     transform: scale(1.03);
   }
