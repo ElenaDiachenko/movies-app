@@ -10,7 +10,8 @@ import { Box } from 'components/Box';
 import { AxiosError } from 'axios';
 import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
-import { MovieRow } from 'components/MovieRow/MovieRow';
+// import { MovieRow } from 'components/MovieRow/MovieRow';
+import { Slider } from 'components/Slider/Slider';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -71,7 +72,7 @@ const Movies = () => {
   };
 
   return (
-    <main style={{ width: '100%' }}>
+    <main style={{ overflow: 'hidden', position: 'relative' }}>
       <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
@@ -84,8 +85,13 @@ const Movies = () => {
       {status === 'resolved' && totalMovies - movies.length <= 0 ? (
         <Box>We're sorry, but you've reached the end of search results.</Box>
       ) : null}
-
+      {/* <Slider /> */}
       {status !== 'resolved' &&
+        !movieQuery &&
+        movieRows.map(row => (
+          <Slider key={row.id} title={row.title} fetchData={row.fetchData} />
+        ))}
+      {/* {status !== 'resolved' &&
         !movieQuery &&
         movieRows.map(row => (
           <MovieRow
@@ -94,7 +100,7 @@ const Movies = () => {
             title={row.title}
             fetchData={row.fetchData}
           />
-        ))}
+        ))} */}
     </main>
   );
 };
