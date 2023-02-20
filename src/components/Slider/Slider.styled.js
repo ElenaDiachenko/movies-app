@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
 `;
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 -1rem 8rem 0;
 `;
 export const Title = styled.h3`
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -21,7 +20,7 @@ export const SliderItemsBox = styled(motion.div)`
 export const SliderItemsBoxInner = styled(motion.div)`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
-  padding: 16px;
+  padding: ${p => p.theme.space[4]}px;
   cursor: grab;
 
   &::-webkit-scrollbar {
@@ -29,12 +28,10 @@ export const SliderItemsBoxInner = styled(motion.div)`
   }
 `;
 
-export const ButtonBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-export const ButtonIcon = styled.div`
+const ButtonIcon = styled.div`
+  background-color: rgb(225, 225, 225, 0.5);
+  color: black;
+  position: absolute;
   border: 1px solid ${p => p.theme.colors.black};
   padding: ${p => p.theme.space[1]}px;
   display: flex;
@@ -42,40 +39,13 @@ export const ButtonIcon = styled.div`
   border-radius: 50%;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   cursor: pointer;
+  z-index: 10;
+  bottom: calc(50% - 20px); ;
 `;
 
-export const Left = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: rgb(22, 22, 22, 0.5);
-  color: white;
-  position: absolute;
+export const Left = styled(ButtonIcon)`
   left: 0;
-  z-index: 99;
-  // top: 0;
-  bottom: 30px;
-  margin: auto;
-  cursor: pointer;
 `;
-export const Right = styled.div`
-  width: 50px;
-  height: 100%;
-  background-color: rgb(22, 22, 22, 0.5);
-  color: white;
-  position: absolute;
+export const Right = styled(ButtonIcon)`
   right: 0;
-  z-index: 99;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  cursor: pointer;
-`;
-
-export const Slider = styled.div`
-  margin-left: 50px;
-  display: flex;
-  margin-top: 10px;
-  width: max-content;
-  transform: translateX(0px);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
 `;

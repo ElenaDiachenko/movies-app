@@ -21,11 +21,17 @@ export const StyledCardBox = styled.div`
 export const ImageBox = styled(motion.div)`
   position: relative;
   width: 160px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 640px) {
     width: 200px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+  @media screen and (min-width: 1024px) {
     width: 280px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 320px;
   }
 `;
 export const MoviePoster = styled.img`

@@ -8,10 +8,8 @@ import {
   Title,
   SliderItemsBox,
   SliderItemsBoxInner,
-  ButtonBox,
-  ButtonIcon,
-  // Left,
-  // Right,
+  Left,
+  Right,
 } from './Slider.styled';
 
 export const Slider = ({ title, fetchData }) => {
@@ -35,7 +33,6 @@ export const Slider = ({ title, fetchData }) => {
         }
         setMovies(response);
         setStatus('resolved');
-        console.log(response);
       })();
     } catch (error) {
       console.log(error.message);
@@ -45,7 +42,7 @@ export const Slider = ({ title, fetchData }) => {
 
   const handleScroll = direction => {
     const { current } = dragSlider;
-    const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
+    const scrollAmount = window.innerWidth > 960 ? 300 : 210;
 
     if (direction === 'left') {
       current.scrollLeft -= scrollAmount;
@@ -55,30 +52,36 @@ export const Slider = ({ title, fetchData }) => {
   };
 
   return (
-    <Wrapper>
-      <Container>
-        <Title>{title}</Title>
-        <ButtonBox>
-          <ButtonIcon onClick={() => handleScroll('left')}>
-            <MdChevronLeft size={40} />
-          </ButtonIcon>
-          <ButtonIcon onClick={() => handleScroll('right')}>
-            <MdChevronRight size={40} />
-          </ButtonIcon>
-        </ButtonBox>
+    <>
+      {status === 'pending' && <p>Loading...</p>}
+      {status === 'rejected' && null}
+      <Wrapper>
+        <Container>
+          <Title>{title}</Title>
 
-        <SliderItemsBox ref={dragSlider}>
-          <SliderItemsBoxInner
-            ref={dragSlider}
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-          >
-            {movies.map((movie, id) => (
-              <SliderCard key={id} movie={movie} />
-            ))}
-          </SliderItemsBoxInner>
-        </SliderItemsBox>
-      </Container>
-    </Wrapper>
+          <div style={{ position: 'relative' }}>
+            <Left onClick={() => handleScroll('left')}>
+              <MdChevronLeft size={40} />
+            </Left>
+            <Right onClick={() => handleScroll('right')}>
+              <MdChevronRight size={40} />
+            </Right>
+            <SliderItemsBox ref={dragSlider}>
+              <SliderItemsBoxInner
+                ref={dragSlider}
+                drag="x"
+                dragConstraints={{ right: 0, left: -width }}
+              >
+                {movies.map((movie, id) =>
+                  movie?.poster_path ? (
+                    <SliderCard key={id} movie={movie} />
+                  ) : null
+                )}
+              </SliderItemsBoxInner>
+            </SliderItemsBox>
+          </div>
+        </Container>
+      </Wrapper>
+    </>
   );
 };

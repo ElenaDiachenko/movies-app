@@ -9,7 +9,6 @@ import {
   Content,
   Title,
 } from './SliderCard.styled';
-import bgImage from 'images/image.png';
 
 export const SliderCard = ({ movie }) => {
   const { id, title, poster_path } = movie;
@@ -18,10 +17,7 @@ export const SliderCard = ({ movie }) => {
       <StyledCardBox>
         <motion.div>
           <ImageBox>
-            <MoviePoster
-              src={poster_path ? IMG_PATH + poster_path : bgImage}
-              alt={title}
-            />
+            <MoviePoster src={IMG_PATH + poster_path} alt={title} />
             <Content>
               <Title>{title}</Title>
             </Content>

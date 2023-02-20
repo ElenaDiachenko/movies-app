@@ -85,22 +85,12 @@ const Movies = () => {
       {status === 'resolved' && totalMovies - movies.length <= 0 ? (
         <Box>We're sorry, but you've reached the end of search results.</Box>
       ) : null}
-      {/* <Slider /> */}
+
       {status !== 'resolved' &&
         !movieQuery &&
         movieRows.map(row => (
           <Slider key={row.id} title={row.title} fetchData={row.fetchData} />
         ))}
-      {/* {status !== 'resolved' &&
-        !movieQuery &&
-        movieRows.map(row => (
-          <MovieRow
-            key={row.id}
-            rowId={row.id}
-            title={row.title}
-            fetchData={row.fetchData}
-          />
-        ))} */}
     </main>
   );
 };
