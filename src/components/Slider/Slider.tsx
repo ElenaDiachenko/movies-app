@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FC } from 'react';
+import { useState, useEffect, useRef, memo, FC } from 'react';
 import { AxiosError } from 'axios';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
@@ -19,7 +19,7 @@ interface SliderProps {
   fetchData: () => Promise<IMovieData[]>;
 }
 
-export const Slider: FC<SliderProps> = ({ title, fetchData }) => {
+export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
   const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [width, setWidth] = useState(0);
@@ -94,4 +94,4 @@ export const Slider: FC<SliderProps> = ({ title, fetchData }) => {
       </Wrapper>
     </>
   );
-};
+});
