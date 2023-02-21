@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: grid;
+  position: relative;
   grid-template-columns: 1fr;
   padding: 0 ${p => p.theme.space[4]}px;
   width: 100%;

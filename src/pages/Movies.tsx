@@ -71,7 +71,7 @@ const Movies = () => {
   };
 
   return (
-    <main style={{ overflow: 'hidden', position: 'relative' }}>
+    <main style={{ overflow: 'hidden' }}>
       <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
