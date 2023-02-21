@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export const StyledCard = styled(motion.div)`
@@ -27,10 +27,10 @@ export const ImageBox = styled(motion.div)`
   @media screen and (min-width: 768px) {
     width: 240px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1440px) {
     width: 280px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1534px) {
     width: 320px;
   }
 `;

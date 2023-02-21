@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
+import { AxiosError } from 'axios';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import { SliderCard } from './SliderCard/SliderCard';
@@ -11,23 +12,31 @@ import {
   Left,
   Right,
 } from './Slider.styled';
+import { IMovieData } from 'interfaces/IMovieData';
 
-export const Slider = ({ title, fetchData }) => {
-  const [movies, setMovies] = useState([]);
+interface SliderProps {
+  title: string;
+  fetchData: () => Promise<IMovieData[]>;
+}
+
+export const Slider: FC<SliderProps> = ({ title, fetchData }) => {
+  const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [width, setWidth] = useState(0);
-  const dragSlider = useRef();
+  const dragSlider = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-  }, []);
+    if (dragSlider?.current?.scrollWidth && dragSlider?.current?.offsetWidth) {
+      setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
+    }
+  }, [dragSlider]);
 
   useEffect(() => {
     try {
       setStatus('pending');
       (async function getMovies() {
         const response = await fetchData();
-        if (response.length === 0) {
+        if (response?.length === 0) {
           setStatus('rejected');
           return;
         }
@@ -35,12 +44,13 @@ export const Slider = ({ title, fetchData }) => {
         setStatus('resolved');
       })();
     } catch (error) {
-      console.log(error.message);
+      console.log((error as AxiosError).message);
       setStatus('rejected');
     }
   }, [fetchData]);
 
-  const handleScroll = direction => {
+  const handleScroll = (direction: string) => {
+    if (!dragSlider.current) return;
     const { current } = dragSlider;
     const scrollAmount = window.innerWidth > 960 ? 300 : 210;
 

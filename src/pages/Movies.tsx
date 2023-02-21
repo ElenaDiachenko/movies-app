@@ -10,7 +10,6 @@ import { Box } from 'components/Box';
 import { AxiosError } from 'axios';
 import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
-// import { MovieRow } from 'components/MovieRow/MovieRow';
 import { Slider } from 'components/Slider/Slider';
 
 const Movies = () => {

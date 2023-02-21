@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { IMG_PATH } from 'pages/Home';
 import {
@@ -10,7 +10,12 @@ import {
   Title,
 } from './SliderCard.styled';
 
-export const SliderCard = ({ movie }) => {
+import { IMovieData } from 'interfaces/IMovieData';
+
+interface SliderCardProps {
+  movie: IMovieData;
+}
+export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
   const { id, title, poster_path } = movie;
   return (
     <StyledCard>
