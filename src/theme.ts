@@ -1,11 +1,10 @@
 import { DefaultTheme } from 'styled-components';
+import { ITheme, ThemeEnum } from 'interfaces/styled';
 
-export const theme: DefaultTheme = {
+const theme: ITheme = {
   colors: {
     black: '#000',
     white: '#fff',
-    text: '#2a2a2a',
-    background: '#fff',
     primary: '#07c',
     secondary: '#05a',
     accent: '#3498db',
@@ -42,5 +41,27 @@ export const theme: DefaultTheme = {
     md: '8px',
     lg: '16px',
     round: '50%',
+  },
+};
+
+export const lightTheme: DefaultTheme = {
+  ...theme,
+  type: ThemeEnum.light,
+
+  colors: {
+    ...theme.colors,
+    bg: '#E5E4E8',
+    text: '#19191B',
+  },
+};
+
+export const darkTheme: DefaultTheme = {
+  ...theme,
+  type: ThemeEnum.dark,
+
+  colors: {
+    ...theme.colors,
+    bg: '#19191B',
+    text: '#E5E4E8',
   },
 };

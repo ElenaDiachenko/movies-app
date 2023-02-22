@@ -1,8 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { lazy, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import { lightTheme, darkTheme } from 'theme';
+import { GlobalStyle } from './GlobalStyle';
 
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
@@ -11,10 +14,22 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem('MOVIE_APP') || 'light'
+  );
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    localStorage.setItem('MOVIE_APP', theme);
+  };
+
   return (
-    <>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route
+          path="/"
+          element={<SharedLayout toggleTheme={toggleTheme} theme={theme} />}
+        >
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
@@ -29,6 +44,7 @@ export const App = () => {
         theme={'colored'}
         hideProgressBar={false}
       />
-    </>
+      <GlobalStyle />
+    </ThemeProvider>
   );
 };

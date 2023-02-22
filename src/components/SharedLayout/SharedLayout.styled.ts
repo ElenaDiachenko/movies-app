@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   display: grid;
   position: relative;
+  background: ${p => p.theme.colors.bg};
+  color: ${p => p.theme.colors.text};
   grid-template-columns: 1fr;
   padding: 0 ${p => p.theme.space[4]}px;
   width: 100%;
@@ -19,7 +21,6 @@ export const HeaderWrap = styled.header`
   display: flex;
   align-items: center;
   padding: ${p => p.theme.space[3]}px 0;
-  background-color: ${p => p.theme.colors.white};
 
   > nav {
     display: flex;
