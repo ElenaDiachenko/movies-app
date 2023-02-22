@@ -13,6 +13,7 @@ import {
   Right,
 } from './Slider.styled';
 import { IMovieData } from 'interfaces/IMovieData';
+import { SkeletonCard } from './SkeletonCard';
 
 interface SliderProps {
   title: string;
@@ -63,8 +64,25 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
 
   return (
     <>
-      {status === 'pending' && <p>Loading...</p>}
+      {status === 'pending' && (
+        <Wrapper>
+          <Container>
+            <Title>{title}</Title>
+            <div style={{ position: 'relative' }}>
+              <Left>
+                <MdChevronLeft size={40} />
+              </Left>
+              <Right>
+                <MdChevronRight size={40} />
+              </Right>
+
+              <SkeletonCard />
+            </div>
+          </Container>
+        </Wrapper>
+      )}
       {status === 'rejected' && null}
+
       <Wrapper>
         <Container>
           <Title>{title}</Title>

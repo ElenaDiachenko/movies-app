@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IMG_PATH } from 'pages/Home';
