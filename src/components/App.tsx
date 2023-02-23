@@ -7,6 +7,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lightTheme, darkTheme } from 'theme';
 import { GlobalStyle } from './GlobalStyle';
 
+const Register = lazy(() => import('pages/Register'));
+const Login = lazy(() => import('pages/Login'));
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
@@ -33,6 +35,9 @@ export const App = () => {
           element={<SharedLayout toggleTheme={toggleTheme} theme={theme} />}
         >
           <Route index element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="movies" element={<Movies />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />

@@ -24,7 +24,7 @@ export const HeaderWrap = styled.header`
   left: 0;
   position: sticky;
   z-index: 11;
-  min-height: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   padding: ${p => p.theme.space[3]}px 0;
