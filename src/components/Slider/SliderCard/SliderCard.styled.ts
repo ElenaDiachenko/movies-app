@@ -61,10 +61,15 @@ export const Like = styled.div`
   right: 4px;
   width: 40px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 99;
   transition: ${p => p.theme.transition};
+  opacity: 0.6;
 
   :hover {
+    opacity: 1;
   }
 `;
 
