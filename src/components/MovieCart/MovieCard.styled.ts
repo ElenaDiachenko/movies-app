@@ -5,8 +5,7 @@ export const ContainerCard = styled.div`
   display: flex;
   width: 100%;
   gap: ${p => p.theme.space[4]}px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: ${p => p.theme.boxShadows.accent};
 `;
 
 export const MoviePoster = styled.img`
@@ -38,11 +37,10 @@ export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: ${p => p.theme.radii.sm};
   text-decoration: none;
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.text};
   font-weight: ${p => p.theme.fontWeights.medium};
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: ${p => p.theme.boxShadows.primary};
+  transition: ${p => p.theme.transition};
 
   :hover:not(.active),
   :focus-visible:not(.active) {

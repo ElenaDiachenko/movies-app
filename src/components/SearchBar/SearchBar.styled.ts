@@ -15,10 +15,10 @@ export const SearchForm = styled(Form)`
   width: 100%;
   margin-left: auto;
   border-radius: ${p => p.theme.radii.sm};
+
   overflow: hidden;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: ${p => p.theme.boxShadows.primary};
+  transition: ${p => p.theme.transition};
 `;
 export const Input = styled(Field)`
   display: inline-block;
@@ -27,10 +27,12 @@ export const Input = styled(Field)`
   font-size: ${p => p.theme.fontSizes.m};
   border: ${p => p.theme.borders.none};
   line-height: ${p => p.theme.lineHeights.body};
+  background: ${p => p.theme.colors.bg};
+  color: ${p => p.theme.colors.text};
   outline: transparent;
   padding-left: ${p => p.theme.space[3]}px;
   padding-right: ${p => p.theme.space[3]}px;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${p => p.theme.transition};
 `;
 export const Button = styled.button`
   display: flex;
@@ -40,7 +42,7 @@ export const Button = styled.button`
   height: 44px;
   border: ${p => p.theme.borders.none};
   opacity: 0.8;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${p => p.theme.transition};
   cursor: pointer;
   outline: none;
 

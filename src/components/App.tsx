@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lazy, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SharedLayout } from './SharedLayout/SharedLayout';
@@ -17,10 +17,12 @@ export const App = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem('MOVIE_APP') || 'light'
   );
+  useEffect(() => {
+    localStorage.setItem('MOVIE_APP', theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.setItem('MOVIE_APP', theme);
   };
 
   return (

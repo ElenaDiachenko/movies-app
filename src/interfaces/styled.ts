@@ -11,7 +11,7 @@ export interface ITheme {
     bg?: string;
     primary: string;
     secondary: string;
-    accent: string;
+    accent?: string;
     muted: string;
   };
   space: number[];
@@ -46,4 +46,9 @@ export interface ITheme {
     lg: string;
     round: string;
   };
+  boxShadows: {
+    accent?: string;
+    primary: string;
+  };
+  transition: string;
 }

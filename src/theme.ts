@@ -5,9 +5,9 @@ const theme: ITheme = {
   colors: {
     black: '#000',
     white: '#fff',
+    accent: '#cc7c12',
     primary: '#07c',
     secondary: '#05a',
-    accent: '#3498db',
     muted: '#f6f6f6',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
@@ -42,6 +42,11 @@ const theme: ITheme = {
     lg: '16px',
     round: '50%',
   },
+  boxShadows: {
+    primary: `0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)`,
+  },
+  transition: `all 250ms cubic-bezier(0.4, 0, 0.2, 1)`,
 };
 
 export const lightTheme: DefaultTheme = {
@@ -50,8 +55,12 @@ export const lightTheme: DefaultTheme = {
 
   colors: {
     ...theme.colors,
-    bg: '#E5E4E8',
+    bg: '#edebf6',
     text: '#19191B',
+  },
+  boxShadows: {
+    ...theme.boxShadows,
+    accent: `0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)`,
   },
 };
 
@@ -63,5 +72,9 @@ export const darkTheme: DefaultTheme = {
     ...theme.colors,
     bg: '#19191B',
     text: '#E5E4E8',
+  },
+  boxShadows: {
+    ...theme.boxShadows,
+    accent: `0 8px 18px rgb(255 255 255 / 25%), 0 5px 7px rgb(255 255 255 / 22%)`,
   },
 };

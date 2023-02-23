@@ -12,6 +12,14 @@ export const Container = styled.div`
   height: 100%;
   margin: 0 auto;
 `;
+export const Switch = styled.div`
+  cursor: pointer;
+  margin-right: 32px;
+  transition: ${p => p.theme.transition};
+  :hover {
+    transform: scale(1.03);
+  }
+`;
 export const HeaderWrap = styled.header`
   top: 0;
   left: 0;
@@ -21,6 +29,7 @@ export const HeaderWrap = styled.header`
   display: flex;
   align-items: center;
   padding: ${p => p.theme.space[3]}px 0;
+  background: ${p => p.theme.colors.bg};
 
   > nav {
     display: flex;
@@ -32,11 +41,10 @@ export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: ${p => p.theme.radii.sm};
   text-decoration: none;
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.text};
   font-weight: ${p => p.theme.fontWeights.medium};
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: ${p => p.theme.boxShadows.primary};
+  transition: ${p => p.theme.transition};
 
   :hover:not(.active),
   :focus-visible:not(.active) {
