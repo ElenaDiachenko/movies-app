@@ -10,7 +10,7 @@ export const StyledCard = styled(motion.div)`
 `;
 export const StyledCardBox = styled.div`
   padding-bottom: ${p => p.theme.space[3]}px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: ${p => p.theme.transition};
 
   &:hover {
     transform: scale(1.08);
@@ -48,13 +48,26 @@ export const Content = styled.div`
   padding: ${p => p.theme.space[4]}px;
   text-align: center;
   opacity: 0;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  transition: ${p => p.theme.transition};
 
   :hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.5);
   }
 `;
+export const Like = styled.div`
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  width: 40px;
+  height: 40px;
+  z-index: 99;
+  transition: ${p => p.theme.transition};
+
+  :hover {
+  }
+`;
+
 export const Title = styled.p`
   display: flex;
   justify-content: center;

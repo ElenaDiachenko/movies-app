@@ -7,7 +7,6 @@ export const Container = styled.div`
   background: ${p => p.theme.colors.bg};
   color: ${p => p.theme.colors.text};
   grid-template-columns: 1fr;
-  padding: 0 ${p => p.theme.space[4]}px;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -30,6 +29,7 @@ export const HeaderWrap = styled.header`
   align-items: center;
   padding: ${p => p.theme.space[3]}px 0;
   background: ${p => p.theme.colors.bg};
+  padding: 0 ${p => p.theme.space[4]}px;
 
   > nav {
     display: flex;
