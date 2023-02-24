@@ -1,4 +1,5 @@
 import { Formik, Form, FormikHelpers } from 'formik';
+import { shallow } from 'zustand/shallow';
 import {
   Button,
   Label,
@@ -9,23 +10,36 @@ import {
 } from '../Form.styled';
 
 import { validationSchema } from 'utils/schemas/LoginSchema';
+import { useStore } from 'stores/store';
 
 const initialValues = {
   email: '',
   password: '',
 };
 
-type IFormLoginValues = {
+export type IFormLoginValues = {
   email: string;
   password: string;
 };
 export const LoginForm = () => {
+  const { loading, error, login, user } = useStore(
+    state => ({
+      loading: state.loading,
+      error: state.error,
+      login: state.loginUser,
+      user: state.authUser,
+    }),
+    shallow
+  );
+
+  console.log(user, 'login');
+
   const handleSubmit = (
     value: IFormLoginValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormLoginValues>
   ) => {
     setSubmitting(false);
-    alert(JSON.stringify(value));
+    login(value);
     resetForm();
   };
   return (

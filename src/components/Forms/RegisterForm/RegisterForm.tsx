@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, FormikHelpers } from 'formik';
-
+import { shallow } from 'zustand/shallow';
 import {
   Container,
   Button,
@@ -12,7 +12,6 @@ import {
 } from '../Form.styled';
 import { validationSchema } from 'utils/schemas/RegisterSchema';
 import { useStore } from 'stores/store';
-import { shallow } from 'zustand/shallow';
 
 export type IFormRegisterValues = {
   name: string;
@@ -38,7 +37,7 @@ export const RegisterForm = () => {
     shallow
   );
 
-  console.log(user, 12222);
+  console.log(user, 'register');
   const handleSubmit = (
     value: IFormRegisterValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormRegisterValues>
