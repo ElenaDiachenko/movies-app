@@ -21,8 +21,7 @@ export type AuthSlice = {
   registerUser: (data: IFormRegisterValues) => void;
   loginUser: (data: IFormLoginValues) => void;
   logoutUser: () => void;
-  setAuthUser: (user: IUser) => void;
-  setLoading: (isLoading: boolean) => void;
+  setAuthUser: () => void;
 };
 
 export const createAuthSlice: StateCreator<
@@ -38,7 +37,23 @@ export const createAuthSlice: StateCreator<
   authUser: null,
   loading: false,
   error: null,
-  setAuthUser: user => set(state => (state.authUser = user)),
+  setAuthUser: async () => {
+    set({ loading: true });
+    try {
+      await onAuthStateChanged(auth, currentUser => {
+        if (currentUser?.email) {
+          set({
+            authUser: { email: currentUser.email },
+            loading: false,
+            error: null,
+          });
+        }
+      });
+    } catch (error: any) {
+      set({ error: error.message, loading: false });
+      console.log(error);
+    }
+  },
 
   registerUser: async ({ name, email, password }) => {
     set({ loading: true });
@@ -88,5 +103,4 @@ export const createAuthSlice: StateCreator<
       console.log(error);
     }
   },
-  setLoading: isLoading => set(state => ({ ...state, loading: isLoading })),
 });

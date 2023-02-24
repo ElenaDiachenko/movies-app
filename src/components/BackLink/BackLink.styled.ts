@@ -12,5 +12,6 @@ export const StyledLink = styled(Link)`
 
   :hover {
     color: ${p => p.theme.colors.accent};
+    cursor: pointer;
   }
 `;

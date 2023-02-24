@@ -20,6 +20,7 @@ export const StyledButton = styled.button`
   &:hover,
   :focus {
     color: ${p => p.theme.colors.accent};
-    transform: scale(1.03);
+    transform: scale(1.01);
+    cursor: pointer;
   }
 `;
