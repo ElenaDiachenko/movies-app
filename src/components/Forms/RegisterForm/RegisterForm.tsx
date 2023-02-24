@@ -11,8 +11,10 @@ import {
   Title,
 } from '../Form.styled';
 import { validationSchema } from 'utils/schemas/RegisterSchema';
+import { useStore } from 'stores/store';
+import { shallow } from 'zustand/shallow';
 
-type IFormRegisterValues = {
+export type IFormRegisterValues = {
   name: string;
   email: string;
   password: string;
@@ -26,13 +28,24 @@ const initialValues = {
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
+  const { loading, error, register, user } = useStore(
+    state => ({
+      loading: state.loading,
+      error: state.error,
+      register: state.registerUser,
+      user: state.authUser,
+    }),
+    shallow
+  );
 
+  console.log(user, 12222);
   const handleSubmit = (
     value: IFormRegisterValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormRegisterValues>
   ) => {
     setSubmitting(false);
     alert(JSON.stringify(value));
+    register(value);
     resetForm();
   };
   return (

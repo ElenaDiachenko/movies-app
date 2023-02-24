@@ -5,8 +5,8 @@ import { immer } from 'zustand/middleware/immer';
 import { createAuthSlice, AuthSlice } from './createAuthSlice';
 
 export const useStore = create<AuthSlice>()(
-  devtools(
-    immer(
+  immer(
+    devtools(
       persist(
         (...a) => ({
           ...createAuthSlice(...a),
