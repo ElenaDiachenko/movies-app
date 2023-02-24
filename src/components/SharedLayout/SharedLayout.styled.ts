@@ -13,10 +13,18 @@ export const Container = styled.div`
 `;
 export const Switch = styled.div`
   cursor: pointer;
-  margin-right: 32px;
+  margin-right: 23px;
   transition: ${p => p.theme.transition};
   :hover {
     transform: scale(1.03);
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: 32px;
+  }
+`;
+export const LogOutText = styled.p`
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 export const HeaderWrap = styled.header`
@@ -26,21 +34,18 @@ export const HeaderWrap = styled.header`
   z-index: 11;
   height: 64px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: ${p => p.theme.space[3]}px 0;
   background: ${p => p.theme.colors.bg};
   padding: 0 ${p => p.theme.space[4]}px;
-
-  > nav {
-    display: flex;
-    gap: ${p => p.theme.space[5]}px;
-  }
 `;
 
 export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: ${p => p.theme.radii.sm};
   text-decoration: none;
+  margin-right: 23px;
   color: ${p => p.theme.colors.text};
   font-weight: ${p => p.theme.fontWeights.medium};
   box-shadow: ${p => p.theme.boxShadows.primary};
@@ -54,5 +59,8 @@ export const Link = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: 32px;
   }
 `;
