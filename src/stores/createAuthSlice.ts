@@ -76,6 +76,7 @@ export const createAuthSlice: StateCreator<
       console.log(error);
     }
   },
+
   loginUser: async ({ email, password }) => {
     set({ loading: true });
 
@@ -93,6 +94,7 @@ export const createAuthSlice: StateCreator<
       console.log(error);
     }
   },
+
   logoutUser: async () => {
     set({ loading: true });
     try {

@@ -1,11 +1,14 @@
+import { lazy, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lazy, useEffect, useState } from 'react';
+import { shallow } from 'zustand/shallow';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lightTheme, darkTheme } from 'theme';
 import { GlobalStyle } from './GlobalStyle';
+import { useStore } from 'stores/store';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
@@ -16,9 +19,25 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
+  const { user, setAuthUser } = useStore(
+    state => ({
+      loading: state.loading,
+      error: state.error,
+      setAuthUser: state.setAuthUser,
+      user: state.authUser,
+    }),
+    shallow
+  );
+
+  console.log(user, 'setAuthUser App');
   const [theme, setTheme] = useState(
     localStorage.getItem('MOVIE_APP') || 'light'
   );
+
+  useEffect(() => {
+    setAuthUser();
+  }, [setAuthUser]);
+
   useEffect(() => {
     localStorage.setItem('MOVIE_APP', theme);
   }, [theme]);

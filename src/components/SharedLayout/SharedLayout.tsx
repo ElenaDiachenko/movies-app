@@ -49,10 +49,12 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
             <Link to="/movies">Movies</Link>
           </nav>
         </Box>
-        <LogoutButton onClick={onLogout}>
-          <LogOutText>Logout</LogOutText>
-          <MdLogout size={22} />
-        </LogoutButton>
+        {user ? (
+          <LogoutButton onClick={onLogout}>
+            <LogOutText>Logout</LogOutText>
+            <MdLogout size={22} />
+          </LogoutButton>
+        ) : null}
       </HeaderWrap>
       <Suspense fallback={<Loader />}>
         <Outlet />

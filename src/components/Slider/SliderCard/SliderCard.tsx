@@ -2,6 +2,7 @@ import { FC, useState, MouseEvent } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
 import { IMG_PATH } from 'pages/Home';
 import {
   StyledCard,
@@ -24,18 +25,12 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
   const location = useLocation();
 
   const toggleLike = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
+    e.preventDefault();
     setLike(like => !like);
   };
-  const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.stopPropagation();
-  };
+
   return (
-    <Link
-      onClick={handleLinkClick}
-      to={`/movies/${id}`}
-      state={{ from: location }}
-    >
+    <Link to={`/movies/${id}`} state={{ from: location }}>
       <StyledCard>
         <StyledCardBox>
           <motion.div>
