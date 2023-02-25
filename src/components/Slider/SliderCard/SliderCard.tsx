@@ -26,9 +26,10 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
   const location = useLocation();
-  const { user, addMovie } = useStore(
+  const { user, addMovie, deleteMovie } = useStore(
     state => ({
       addMovie: state.addSavedMovie,
+      deleteMovie: state.deleteSavedMovie,
       user: state.authUser,
     }),
     shallow
@@ -38,7 +39,12 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
     if (movie?.title && movie?.poster_path && user) {
       setLike(like => !like);
       setSaved(true);
-      addMovie(movie.id, movie.title, movie.poster_path);
+      // addMovie(movie.id, movie.title, movie.poster_path);
+      deleteMovie({
+        id: movie.id,
+        title: movie.title,
+        img: movie.poster_path,
+      });
     } else {
       alert('Please log in to save a movie');
     }
