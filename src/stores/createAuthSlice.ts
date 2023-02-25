@@ -1,5 +1,4 @@
 import { StateCreator } from 'zustand';
-// import { immer } from 'zustand/middleware/immer';
 
 import { auth, db } from 'config/firebase';
 
@@ -13,6 +12,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { IUser } from 'interfaces/IUser';
 import { IFormRegisterValues } from 'components/Forms/RegisterForm/RegisterForm';
 import { IFormLoginValues } from 'components/Forms/LoginForm/LoginForm';
+import { MovieSlice } from './createMovieSlice';
 
 export type AuthSlice = {
   authUser: IUser | null;
@@ -25,7 +25,7 @@ export type AuthSlice = {
 };
 
 export const createAuthSlice: StateCreator<
-  AuthSlice,
+  AuthSlice & MovieSlice,
   [
     ['zustand/devtools', never],
     ['zustand/persist', unknown],

@@ -19,28 +19,31 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
-  const { user, setAuthUser } = useStore(
+  const { user, setAuthUser, setMovies } = useStore(
     state => ({
       loading: state.loading,
       error: state.error,
       setAuthUser: state.setAuthUser,
       user: state.authUser,
+      setMovies: state.setSavedMovies,
     }),
     shallow
   );
 
-  console.log(user, 'setAuthUser App');
   const [theme, setTheme] = useState(
     localStorage.getItem('MOVIE_APP') || 'light'
   );
 
   useEffect(() => {
-    setAuthUser();
-  }, [setAuthUser]);
-
-  useEffect(() => {
     localStorage.setItem('MOVIE_APP', theme);
   }, [theme]);
+
+  useEffect(() => {
+    (async () => {
+      setAuthUser();
+      setMovies();
+    })();
+  }, [setAuthUser, setMovies]);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');

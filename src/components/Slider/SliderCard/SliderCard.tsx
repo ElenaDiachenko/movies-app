@@ -1,11 +1,9 @@
 import { FC, useState, MouseEvent } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useLocation, Link } from 'react-router-dom';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { shallow } from 'zustand/shallow';
 import { motion } from 'framer-motion';
 
-import { db } from 'config/firebase';
 import { useStore } from 'stores/store';
 import { IMG_PATH } from 'pages/Home';
 import {
@@ -28,31 +26,19 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
   const location = useLocation();
-  const { user } = useStore(
+  const { user, addMovie } = useStore(
     state => ({
+      addMovie: state.addSavedMovie,
       user: state.authUser,
     }),
     shallow
   );
-
-  const movieID = doc(db, 'users', `${user?.email}`);
-
   const saveMovie = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (user?.email) {
-      try {
-        setLike(like => !like);
-        setSaved(true);
-        await updateDoc(movieID, {
-          savedMovies: arrayUnion({
-            id: movie.id,
-            title: movie.title,
-            img: movie.poster_path,
-          }),
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    if (movie?.title && movie?.poster_path && user) {
+      setLike(like => !like);
+      setSaved(true);
+      addMovie(movie.id, movie.title, movie.poster_path);
     } else {
       alert('Please log in to save a movie');
     }
