@@ -22,9 +22,8 @@ interface SliderCardProps {
   movie: IMovieData;
 }
 export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
-  const { id, title, poster_path } = movie;
-  const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const { id, title, poster_path, saved } = movie;
+  const [like, setLike] = useState(saved);
   const location = useLocation();
   const { user, addMovie, deleteMovie } = useStore(
     state => ({
@@ -38,13 +37,12 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
     e.preventDefault();
     if (movie?.title && movie?.poster_path && user) {
       setLike(like => !like);
-      setSaved(true);
-      // addMovie(movie.id, movie.title, movie.poster_path);
-      deleteMovie({
-        id: movie.id,
-        title: movie.title,
-        img: movie.poster_path,
-      });
+      addMovie(movie.id, movie.title, movie.poster_path);
+      // deleteMovie({
+      //   id: movie.id,
+      //   title: movie.title,
+      //   img: movie.poster_path,
+      // });
     } else {
       alert('Please log in to save a movie');
     }

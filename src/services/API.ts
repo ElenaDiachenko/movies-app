@@ -1,31 +1,51 @@
-import axios from 'axios';
+import axios from './instanceAxios';
+import { getTransformedArray } from 'utils/getTransformedArray';
 import { IMoviesDTO, ResultDTO } from 'interfaces/IMoviesDTO';
 import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
 import { IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 import { IReviewsDTO } from 'interfaces/IReviewsDTO';
 
-axios.defaults.baseURL = `https://api.themoviedb.org/3/`;
-
 const API_KEY = process.env.REACT_APP_MOVIE_IMDB_API_KEY;
 
-const getBaseTransformedData = (data: ResultDTO[]) =>
-  data.map(it => ({
+const getBaseTransformedData = (data: ResultDTO[]) => {
+  const { state } = JSON.parse(localStorage.getItem('state') || '');
+
+  if (state === '' || !state?.movies?.length) {
+    return data.map(it => ({
+      id: it.id,
+      poster_path: it.poster_path,
+      title: it.title,
+      release_date: it.release_date,
+      vote_average: it.vote_average,
+      overview: it.overview,
+      saved: false,
+      genre_ids: it.genre_ids,
+    }));
+  }
+
+  const transformResult: ResultDTO[] = getTransformedArray(data, state.movies, {
+    saved: true,
+  });
+
+  return transformResult.map(it => ({
     id: it.id,
     poster_path: it.poster_path,
     title: it.title,
     release_date: it.release_date,
     vote_average: it.vote_average,
     overview: it.overview,
+    saved: it.saved || false,
     genre_ids: it.genre_ids,
   }));
+};
 
 const fetchTrendingMovies = async () => {
   const { data } = await axios.get<IMoviesDTO>(
     `trending/movie/day?api_key=${API_KEY}`
   );
-  const response = data.results;
-  const transformedData = getBaseTransformedData(response);
+
+  const transformedData = getBaseTransformedData(data.results);
   return transformedData;
 };
 
@@ -45,6 +65,7 @@ const fetchMoviesByKeyword = async (query: string, page: number) => {
       genre_ids: it.genre_ids,
     })),
   };
+
   return transformedData;
 };
 

@@ -11,6 +11,7 @@ export interface IMovieData {
   vote_average?: ResultDTO['vote_average'];
   overview?: ResultDTO['overview'];
   genres_ids?: ResultDTO['genre_ids'];
+  saved?: boolean;
 }
 
 export interface IMovieByIdData {
@@ -20,6 +21,7 @@ export interface IMovieByIdData {
   vote_average: IMovieByIdDTO['vote_average'];
   overview: IMovieByIdDTO['overview'];
   genres: IMovieByIdDTO['genres'];
+  saved?: boolean;
 }
 
 export interface IMovieDataByKeyword {
