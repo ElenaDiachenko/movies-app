@@ -37,12 +37,13 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
     e.preventDefault();
     if (movie?.title && movie?.poster_path && user) {
       setLike(like => !like);
-      addMovie(movie.id, movie.title, movie.poster_path);
-      // deleteMovie({
-      //   id: movie.id,
-      //   title: movie.title,
-      //   img: movie.poster_path,
-      // });
+      !saved
+        ? addMovie(movie.id, movie.title, movie.poster_path)
+        : deleteMovie({
+            id: movie.id,
+            title: movie.title,
+            img: movie.poster_path,
+          });
     } else {
       alert('Please log in to save a movie');
     }
