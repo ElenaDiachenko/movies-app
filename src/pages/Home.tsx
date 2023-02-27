@@ -9,25 +9,31 @@ export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 const Home = () => {
   const [movies, setMovies] = useState<IMovieData[] | []>([]);
+  const [page, setPage] = useState(1);
+  const [totalMovies, setTotalMovies] = useState<number | 0>(0);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     try {
       setStatus('pending');
       (async function getMovies() {
-        const response = await requests.fetchTrendingMovies();
-        if (response.length === 0) {
+        const { results, total_pages } = await requests.fetchTrendingMovies(
+          page
+        );
+        if (results.length === 0) {
           setStatus('rejected');
           return;
         }
-        setMovies(response);
+        setMovies(movies => [...movies, ...results]);
+        setPage(page);
+        setTotalMovies(total_pages);
         setStatus('resolved');
       })();
     } catch (error) {
       console.log((error as AxiosError).message);
       setStatus('rejected');
     }
-  }, []);
+  }, [page]);
 
   return (
     <main>
