@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Field, ErrorMessage } from 'formik';
 
 export const Container = styled.div`
@@ -55,17 +56,26 @@ export const Input = styled(Field)`
     border: 2px solid ${p => p.theme.colors.accent};
   }
 `;
+export const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+  }
+`;
 
-export const Button = styled.button`
+const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   cursor: pointer;
-  width: 22%;
-  height: 44px;
-  background-color: ${p => p.theme.colors.accent};
-  color: ${p => p.theme.colors.white};
+  width: 30%;
+  height: 50px;
+
   font-family: inherit;
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -75,12 +85,29 @@ export const Button = styled.button`
 
   &:hover,
   :focus {
-    border: 1px solid ${p => p.theme.colors.accent};
     transform: scale(1.01);
     cursor: pointer;
   }
 
   @media screen and (max-width: 768px) {
     height: 40px;
+  }
+`;
+
+export const SubmitButton = styled(Button)`
+  background-color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
+  &:hover,
+  :focus {
+    border: 1px solid ${p => p.theme.colors.accent};
+  }
+`;
+export const ButtonStyledLink = styled(Button)`
+  background-color: ${p => p.theme.colors.bg};
+  box-shadow: ${p => p.theme.boxShadows.primary};
+  color: ${p => p.theme.colors.text};
+  &:hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
   }
 `;

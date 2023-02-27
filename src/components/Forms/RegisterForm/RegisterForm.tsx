@@ -4,11 +4,13 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { shallow } from 'zustand/shallow';
 import {
   Container,
-  Button,
+  SubmitButton,
+  ButtonStyledLink,
   Label,
   Input,
   Message,
   Title,
+  ButtonBox,
 } from '../Form.styled';
 import { validationSchema } from 'utils/schemas/RegisterSchema';
 import { useStore } from 'stores/store';
@@ -26,7 +28,6 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
-  const navigate = useNavigate();
   const { loading, error, register, user } = useStore(
     state => ({
       loading: state.loading,
@@ -36,20 +37,19 @@ export const RegisterForm = () => {
     }),
     shallow
   );
-
+  const navigate = useNavigate();
   console.log(user, 'register');
   const handleSubmit = (
     value: IFormRegisterValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormRegisterValues>
   ) => {
     setSubmitting(false);
-    alert(JSON.stringify(value));
     register(value);
     resetForm();
   };
   return (
     <Container>
-      <Title>Sign Up</Title>
+      <Title>Register</Title>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -86,9 +86,14 @@ export const RegisterForm = () => {
                 />
                 <Message name="password" component="span" />
               </Label>
-              <Button type="submit" disabled={isSubmitting}>
-                SignUp
-              </Button>
+              <ButtonBox>
+                <SubmitButton type="submit" disabled={isSubmitting}>
+                  Register
+                </SubmitButton>
+                <ButtonStyledLink onClick={() => navigate('/login')}>
+                  Log In
+                </ButtonStyledLink>
+              </ButtonBox>
             </Form>
           );
         }}

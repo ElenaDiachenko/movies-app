@@ -33,7 +33,7 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
     }),
     shallow
   );
-  const saveMovie = async (e: MouseEvent<HTMLDivElement>) => {
+  const toggleMovie = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (movie?.title && movie?.poster_path && user) {
       setLike(like => !like);
@@ -58,7 +58,7 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
               <MoviePoster src={IMG_PATH + poster_path} alt={title} />
               <Content>
                 <Title>{title}</Title>
-                <Like onClick={saveMovie}>
+                <Like onClick={toggleMovie}>
                   {like ? (
                     <FaHeart size={25} color={'red'} />
                   ) : (
