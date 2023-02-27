@@ -2,11 +2,14 @@ import { FC, MouseEvent } from 'react';
 import { usePagination, DOTS } from 'hooks/usePagination';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
+import { PaginationContainer, StyledButton } from './Pagination.styled';
+
 type PaginationProps = {
   total: number;
   buttonConst: number;
   siblingCount: number;
   currentPage: number;
+  contentPerPage: number;
   limit: number;
   paginate: (page: number) => void;
 };
@@ -15,6 +18,7 @@ export const Pagination: FC<PaginationProps> = ({
   total,
   currentPage,
   buttonConst,
+  contentPerPage,
   limit,
   siblingCount,
   paginate,
@@ -35,29 +39,40 @@ export const Pagination: FC<PaginationProps> = ({
   };
 
   return (
-    <nav aria-label="pagination" style={{ display: 'flex' }}>
+    <PaginationContainer aria-label="pagination" style={{ display: 'flex' }}>
       {currentPage > 1 && (
-        <button aria-label="previous" onClick={() => paginate(currentPage - 1)}>
+        <StyledButton
+          aria-label="previous"
+          onClick={() => paginate(currentPage - 1)}
+        >
           <BsArrowLeft size={23} />
-        </button>
+        </StyledButton>
       )}
       {paginationRange &&
         paginationRange.map((item, index) => {
           if (item === DOTS) {
-            return <button key={index}>&#8230;</button>;
+            return <StyledButton key={index}>&#8230;</StyledButton>;
           }
           return (
-            <button key={index} onClick={changePage}>
+            <StyledButton
+              aria-label={`page ${item}`}
+              key={index}
+              onClick={changePage}
+              className={currentPage === item ? 'active' : ''}
+            >
               <span>{item}</span>
-            </button>
+            </StyledButton>
           );
         })}
 
       {currentPage !== totalPageCount && (
-        <button aria-label="next" onClick={() => paginate(currentPage + 1)}>
+        <StyledButton
+          aria-label="next"
+          onClick={() => paginate(currentPage + 1)}
+        >
           <BsArrowRight size={23} />
-        </button>
+        </StyledButton>
       )}
-    </nav>
+    </PaginationContainer>
   );
 };
