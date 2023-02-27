@@ -5,6 +5,7 @@ import { shallow } from 'zustand/shallow';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { PrivatRoute, RestrictedRoute } from 'routes';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lightTheme, darkTheme } from 'theme';
 import { GlobalStyle } from './GlobalStyle';
@@ -57,13 +58,36 @@ export const App = () => {
           element={<SharedLayout toggleTheme={toggleTheme} theme={theme} />}
         >
           <Route index element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+          <Route
+            path="register"
+            element={<RestrictedRoute component={<Register />} />}
+          />
+          <Route
+            path="login"
+            element={<RestrictedRoute component={<Login />} />}
+          />
+          <Route
+            path="movies"
+            element={<PrivatRoute redirectTo="/login" component={<Movies />} />}
+          />
+          <Route
+            path="movies/:movieId"
+            element={
+              <PrivatRoute redirectTo="./login" component={<MovieDetails />} />
+            }
+          >
+            <Route
+              path="cast"
+              element={
+                <PrivatRoute redirectTo="./login " component={<Cast />} />
+              }
+            />
+            <Route
+              path="reviews"
+              element={
+                <PrivatRoute redirectTo="./login" component={<Reviews />} />
+              }
+            />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to={'/'} />} />

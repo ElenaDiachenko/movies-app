@@ -53,7 +53,7 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
   const handleScroll = (direction: string) => {
     if (!dragSlider.current) return;
     const { current } = dragSlider;
-    const scrollAmount = window.innerWidth > 960 ? 300 : 210;
+    const scrollAmount = window.innerWidth > 960 ? 400 : 310;
 
     if (direction === 'left') {
       current.scrollLeft -= scrollAmount;

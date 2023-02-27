@@ -1,12 +1,15 @@
 import { Formik, Form, FormikHelpers } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import {
-  Button,
+  SubmitButton,
+  ButtonStyledLink,
   Label,
   Input,
   Message,
   Title,
   Container,
+  ButtonBox,
 } from '../Form.styled';
 
 import { validationSchema } from 'utils/schemas/LoginSchema';
@@ -31,7 +34,7 @@ export const LoginForm = () => {
     }),
     shallow
   );
-
+  const navigate = useNavigate();
   console.log(user, 'login');
 
   const handleSubmit = (
@@ -72,9 +75,14 @@ export const LoginForm = () => {
                 />
                 <Message name="password" component="span" />
               </Label>
-              <Button type="submit" disabled={isSubmitting}>
-                LogIn
-              </Button>
+              <ButtonBox>
+                <SubmitButton type="submit" disabled={isSubmitting}>
+                  Login
+                </SubmitButton>
+                <ButtonStyledLink onClick={() => navigate('/register')}>
+                  Register
+                </ButtonStyledLink>
+              </ButtonBox>
             </Form>
           );
         }}

@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react';
-import { StyledButton } from './LogoutButton.styled';
+import { StyledButton } from './AuthButton.styled';
 
-type LogoutProps = {
+type AuthProps = {
   onClick: () => void;
   children: ReactNode;
 };
 
-export const LogoutButton: FC<LogoutProps> = ({ onClick, children }) => {
+export const AuthButton: FC<AuthProps> = ({ onClick, children }) => {
   return <StyledButton onClick={() => onClick()}>{children}</StyledButton>;
 };

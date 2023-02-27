@@ -1,10 +1,10 @@
 import { Suspense, FC } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 import { Loader } from '../Loader/Loader';
-import { MdDarkMode, MdLightMode, MdLogout } from 'react-icons/md';
-import { LogoutButton } from 'components/LogoutButton/LogoutButton';
+import { MdDarkMode, MdLightMode, MdLogout, MdLogin } from 'react-icons/md';
+import { AuthButton } from 'components/AuthButton/AuthButton';
 import {
   Container,
   HeaderWrap,
@@ -30,7 +30,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
     }),
     shallow
   );
-
+  const navigate = useNavigate();
   console.log(user, 'logout');
 
   return (
@@ -50,11 +50,16 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
           </nav>
         </Box>
         {user ? (
-          <LogoutButton onClick={onLogout}>
+          <AuthButton onClick={onLogout}>
             <LogOutText>Logout</LogOutText>
             <MdLogout size={22} />
-          </LogoutButton>
-        ) : null}
+          </AuthButton>
+        ) : (
+          <AuthButton onClick={() => navigate('/login')}>
+            <LogOutText>LogIn</LogOutText>
+            <MdLogin size={22} />
+          </AuthButton>
+        )}
       </HeaderWrap>
       <Suspense fallback={<Loader />}>
         <Outlet />
