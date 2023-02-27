@@ -1,5 +1,5 @@
 import { Suspense, FC } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 import { Loader } from '../Loader/Loader';
@@ -31,7 +31,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
     shallow
   );
   const navigate = useNavigate();
-  console.log(user, 'logout');
+  const { pathname } = useLocation();
 
   return (
     <Container>
@@ -54,12 +54,12 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
             <LogOutText>Logout</LogOutText>
             <MdLogout size={22} />
           </AuthButton>
-        ) : (
+        ) : pathname !== '/login' && pathname !== '/register' ? (
           <AuthButton onClick={() => navigate('/login')}>
             <LogOutText>LogIn</LogOutText>
             <MdLogin size={22} />
           </AuthButton>
-        )}
+        ) : null}
       </HeaderWrap>
       <Suspense fallback={<Loader />}>
         <Outlet />
