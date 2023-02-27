@@ -40,13 +40,13 @@ const getBaseTransformedData = (data: ResultDTO[]) => {
   }));
 };
 
-const fetchTrendingMovies = async () => {
+const fetchTrendingMovies = async (page: number = 1) => {
   const { data } = await axios.get<IMoviesDTO>(
-    `trending/movie/day?api_key=${API_KEY}`
+    `trending/movie/day?api_key=${API_KEY}&&page=${page}`
   );
 
   const transformedData = getBaseTransformedData(data.results);
-  return transformedData;
+  return { total_pages: data.total_pages, results: transformedData };
 };
 
 const fetchMoviesByKeyword = async (query: string, page: number) => {

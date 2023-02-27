@@ -41,8 +41,8 @@ export const App = () => {
 
   useEffect(() => {
     (async () => {
-      setAuthUser();
-      setMovies();
+      await setAuthUser();
+      await setMovies();
     })();
   }, [setAuthUser, setMovies]);
 
