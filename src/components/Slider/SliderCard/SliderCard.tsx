@@ -5,7 +5,7 @@ import { shallow } from 'zustand/shallow';
 import { motion } from 'framer-motion';
 
 import { useStore } from 'stores/store';
-import { IMG_PATH } from 'pages/Home';
+import { IMG_PATH } from 'pages/Movies';
 import {
   StyledCard,
   StyledCardBox,

@@ -18,6 +18,7 @@ const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Account = lazy(() => import('pages/Account'));
 
 export const App = () => {
   const { user, setAuthUser, setMovies } = useStore(
@@ -58,6 +59,12 @@ export const App = () => {
           element={<SharedLayout toggleTheme={toggleTheme} theme={theme} />}
         >
           <Route index element={<Home />} />
+          <Route
+            path="account"
+            element={
+              <PrivatRoute redirectTo="/login" component={<Account />} />
+            }
+          />
           <Route
             path="register"
             element={<RestrictedRoute component={<Register />} />}

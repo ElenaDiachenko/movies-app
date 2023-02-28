@@ -46,7 +46,12 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
           </Switch>
           <nav>
             <Link to="/">Home</Link>
-            <Link to="/movies">Movies</Link>
+            {user ? (
+              <>
+                <Link to="/movies">Movies</Link>
+                <Link to="/account">Account</Link>
+              </>
+            ) : null}
           </nav>
         </Box>
         {user ? (

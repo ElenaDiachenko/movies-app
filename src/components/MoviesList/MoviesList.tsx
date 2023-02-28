@@ -6,7 +6,7 @@ import {
   MovieTitle,
   StyledLink,
 } from './MoviesList.styled';
-import { IMG_PATH } from '../../pages/Home';
+import { IMG_PATH } from '../../pages/Movies';
 import { IMovieData } from 'interfaces/IMovieData';
 
 export const MoviesList = ({ movies }: { movies: IMovieData[] }) => {

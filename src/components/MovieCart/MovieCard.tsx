@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { IMG_PATH } from '../../pages/Home';
-import bgImage from '../../images/image.png';
+import { IMG_PATH } from 'pages/Movies';
+import bgImage from 'images/image.png';
 import { Box } from '../Box';
 import {
   ContainerCard,

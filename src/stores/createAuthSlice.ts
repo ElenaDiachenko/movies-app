@@ -99,7 +99,7 @@ export const createAuthSlice: StateCreator<
     set({ loading: true });
     try {
       await signOut(auth);
-      set({ authUser: null, loading: false, error: null });
+      set({ authUser: null, loading: false, error: null, movies: [] });
     } catch (error: any) {
       set({ error: error.message, loading: false });
       console.log(error);

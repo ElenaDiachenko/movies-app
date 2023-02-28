@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { Container, Item, Image, Description } from './Cast.styled';
 import { Loader } from 'components/Loader/Loader';
 import { requests } from 'services/API';
-import { IMG_PATH } from '../../pages/Home';
+import { IMG_PATH } from '../../pages/Movies';
 import bgImage from '../../images/image.png';
 import { ICastData } from 'interfaces/IMovieData';
 
