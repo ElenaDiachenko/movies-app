@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { useStore } from 'stores/store';
-
+import { Box } from 'components/Box';
 import { IMG_PATH } from './Movies';
 import {
   MovieItem,
@@ -27,18 +26,25 @@ const Account = () => {
   return (
     <main>
       <h1 style={{ textAlign: 'center', margin: '16px auto ' }}>My movies</h1>
-      <MoviesContainer>
-        {movies.map(({ id, title, img }) =>
-          img ? (
-            <MovieItem key={id}>
-              <StyledLink to={`/movies/${id}`} state={{ from: location }}>
-                <MoviePoster src={IMG_PATH + img} alt={title} />
-                <MovieTitle>{title}</MovieTitle>
-              </StyledLink>
-            </MovieItem>
-          ) : null
-        )}
-      </MoviesContainer>
+
+      {movies.length > 0 ? (
+        <MoviesContainer>
+          {movies.map(({ id, title, poster_path }) =>
+            poster_path ? (
+              <MovieItem key={id}>
+                <StyledLink to={`/movies/${id}`} state={{ from: location }}>
+                  <MoviePoster src={IMG_PATH + poster_path} alt={title} />
+                  <MovieTitle>{title}</MovieTitle>
+                </StyledLink>
+              </MovieItem>
+            ) : null
+          )}
+        </MoviesContainer>
+      ) : (
+        <Box display="flex" justifyContent="center" mt={16}>
+          No saved movies yet
+        </Box>
+      )}
     </main>
   );
 };

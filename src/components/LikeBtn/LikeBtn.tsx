@@ -32,7 +32,7 @@ export const LikeBtn: FC<LikeBtnProps> = ({ movie }) => {
         : deleteMovie({
             id,
             title,
-            img: poster_path,
+            poster_path,
           });
     } else {
       toast.info('Please log in to save a movie');

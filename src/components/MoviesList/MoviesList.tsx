@@ -8,18 +8,23 @@ import {
 } from './MoviesList.styled';
 import { IMG_PATH } from '../../pages/Movies';
 import { IMovieData } from 'interfaces/IMovieData';
+import { LikeBtn } from 'components/LikeBtn/LikeBtn';
 
 export const MoviesList = ({ movies }: { movies: IMovieData[] }) => {
   const location = useLocation();
 
   return (
     <MoviesContainer>
-      {movies.map(({ id, title, poster_path }) =>
-        poster_path ? (
-          <MovieItem key={id}>
-            <StyledLink to={`/movies/${id}`} state={{ from: location }}>
-              <MoviePoster src={IMG_PATH + poster_path} alt={title} />
-              <MovieTitle>{title}</MovieTitle>
+      {movies.map(movie =>
+        movie.poster_path ? (
+          <MovieItem key={movie.id}>
+            <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+              <MoviePoster
+                src={IMG_PATH + movie.poster_path}
+                alt={movie.title}
+              />
+              <MovieTitle>{movie.title}</MovieTitle>
+              <LikeBtn movie={movie} />
             </StyledLink>
           </MovieItem>
         ) : null

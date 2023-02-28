@@ -60,12 +60,12 @@ export const createMovieSlice: StateCreator<
         savedMovies: arrayUnion({
           id,
           title,
-          img: poster_path,
+          poster_path,
         }),
       });
 
       set({
-        movies: [...movies, { id, title, img: poster_path }],
+        movies: [...movies, { id, title, poster_path }],
         loadingMovies: false,
         errorMovies: null,
       });

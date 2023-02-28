@@ -1,5 +1,5 @@
 export interface ISavedMovieData {
   id: number;
   title: string;
-  img: string;
+  poster_path: string;
 }
