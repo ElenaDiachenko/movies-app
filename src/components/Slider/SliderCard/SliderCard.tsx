@@ -3,6 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useLocation, Link } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 import { useStore } from 'stores/store';
 import { IMG_PATH } from 'pages/Movies';
@@ -45,12 +46,21 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
             img: movie.poster_path,
           });
     } else {
-      alert('Please log in to save a movie');
+      toast.info('Please log in to save a movie');
+    }
+  };
+  const handleLinkClick = () => {
+    if (!user) {
+      toast.info('Please log in to see a movie detail');
     }
   };
 
   return (
-    <Link to={`/movies/${id}`} state={{ from: location }}>
+    <Link
+      onClick={handleLinkClick}
+      to={user ? `/movies/${id}` : `/login`}
+      state={{ from: location }}
+    >
       <StyledCard>
         <StyledCardBox>
           <motion.div>
