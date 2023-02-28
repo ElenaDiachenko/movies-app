@@ -1,5 +1,4 @@
-import { FC, useState, MouseEvent } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FC } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { motion } from 'framer-motion';
@@ -14,41 +13,23 @@ import {
   ImageBox,
   Content,
   Title,
-  Like,
 } from './SliderCard.styled';
-
+import { LikeBtn } from 'components/LikeBtn/LikeBtn';
 import { IMovieData } from 'interfaces/IMovieData';
 
 interface SliderCardProps {
   movie: IMovieData;
 }
 export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
-  const { id, title, poster_path, saved } = movie;
-  const [like, setLike] = useState(saved);
-  const location = useLocation();
-  const { user, addMovie, deleteMovie } = useStore(
+  const { id, title, poster_path } = movie;
+  const { user } = useStore(
     state => ({
-      addMovie: state.addSavedMovie,
-      deleteMovie: state.deleteSavedMovie,
       user: state.authUser,
     }),
     shallow
   );
-  const toggleMovie = async (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (movie?.title && movie?.poster_path && user) {
-      setLike(like => !like);
-      !saved
-        ? addMovie(movie.id, movie.title, movie.poster_path)
-        : deleteMovie({
-            id: movie.id,
-            title: movie.title,
-            img: movie.poster_path,
-          });
-    } else {
-      toast.info('Please log in to save a movie');
-    }
-  };
+  const location = useLocation();
+
   const handleLinkClick = () => {
     if (!user) {
       toast.info('Please log in to see a movie detail');
@@ -68,13 +49,7 @@ export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
               <MoviePoster src={IMG_PATH + poster_path} alt={title} />
               <Content>
                 <Title>{title}</Title>
-                <Like onClick={toggleMovie}>
-                  {like ? (
-                    <FaHeart size={25} color={'red'} />
-                  ) : (
-                    <FaRegHeart size={25} color={'red'} />
-                  )}
-                </Like>
+                <LikeBtn movie={movie} />
               </Content>
             </ImageBox>
           </motion.div>
