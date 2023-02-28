@@ -12,7 +12,7 @@ const Home = () => {
   const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
-  const [totalMovies, setTotalMovies] = useState<number | 0>(0);
+  const [totalMovies, setTotalMovies] = useState(0);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {
@@ -22,12 +22,12 @@ const Home = () => {
         const { results, total_pages } = await requests.fetchTrendingMovies(
           page
         );
+
         if (results.length === 0) {
           setStatus('rejected');
           return;
         }
-        setMovies(movies => [...movies, ...results]);
-        setPage(page);
+        setMovies(results);
         setTotalMovies(total_pages);
         setStatus('resolved');
       })();
