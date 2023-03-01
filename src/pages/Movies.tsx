@@ -97,7 +97,9 @@ const Home = () => {
         <>
           <section style={{ flexGrow: 1 }}>
             <Box as="h1" mb={16}>
-              Trending today
+              {movieQuery
+                ? `Search result by query '${movieQuery}'`
+                : 'Trending today'}
             </Box>
             {movies && <MoviesList movies={movies} />}
           </section>
