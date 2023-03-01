@@ -31,7 +31,7 @@ export const HeaderWrap = styled.header`
   top: 0;
   left: 0;
   position: sticky;
-  z-index: 11;
+  z-index: 999;
   height: 64px;
   display: flex;
   justify-content: space-between;

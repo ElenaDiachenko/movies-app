@@ -1,8 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
+import { FaHeart } from 'react-icons/fa';
+
 import { useStore } from 'stores/store';
 import { Box } from 'components/Box';
 import { IMG_PATH } from './Movies';
+import { Like } from 'components/LikeBtn/LikeBtn.styled';
 import {
   MovieItem,
   MoviesContainer,
@@ -12,17 +15,17 @@ import {
 } from 'components/MoviesList/MoviesList.styled';
 
 const Account = () => {
-  const { loading, error, movies } = useStore(
+  const { movies, deleteMovie } = useStore(
     state => ({
-      loading: state.loadingMovies,
       error: state.errorMovies,
       movies: state.movies,
+      deleteMovie: state.deleteSavedMovie,
     }),
     shallow
   );
 
   const location = useLocation();
-  console.log(movies);
+
   return (
     <main>
       <h1 style={{ textAlign: 'center', margin: '16px auto ' }}>My movies</h1>
@@ -36,6 +39,9 @@ const Account = () => {
                   <MoviePoster src={IMG_PATH + poster_path} alt={title} />
                   <MovieTitle>{title}</MovieTitle>
                 </StyledLink>
+                <Like onClick={() => deleteMovie({ id, title, poster_path })}>
+                  <FaHeart size={25} color={'red'} />
+                </Like>
               </MovieItem>
             ) : null
           )}

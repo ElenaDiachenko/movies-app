@@ -24,14 +24,19 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
   const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [width, setWidth] = useState(0);
+  // const [page, setPage] = useState(1);
+  // const [element, setElement] = useState<any>(null);
   const dragSlider = useRef<HTMLDivElement>(null);
 
+  // console.log(page);
   useEffect(() => {
     if (dragSlider?.current?.scrollWidth && dragSlider?.current?.offsetWidth) {
       setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
+      // setElement(dragSlider.current.scrollWidth);
     }
   }, [dragSlider]);
-
+  // console.log(width, 'width');
+  // console.log(element, 'element');
   useEffect(() => {
     try {
       setStatus('pending');
@@ -59,6 +64,10 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
       current.scrollLeft -= scrollAmount;
     } else {
       current.scrollLeft += scrollAmount;
+
+      // if (current.scrollLeft >= width - scrollAmount) {
+      //   setPage(page => (page += 1));
+      // }
     }
   };
 
