@@ -5,11 +5,11 @@ import { shallow } from 'zustand/shallow';
 import { Loader } from '../Loader/Loader';
 import { MdDarkMode, MdLightMode, MdLogout, MdLogin } from 'react-icons/md';
 import { AuthButton } from 'components/AuthButton/AuthButton';
+import { Navigation } from 'components/Navigation/Navigation';
 import {
   Container,
   HeaderWrap,
   Navmenu,
-  Link,
   Switch,
   LogOutText,
 } from './SharedLayout.styled';
@@ -45,15 +45,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
               <MdDarkMode size={24} />
             )}
           </Switch>
-          <nav>
-            <Link to="/">Home</Link>
-            {user ? (
-              <>
-                <Link to="/movies">Movies</Link>
-                <Link to="/account">Account</Link>
-              </>
-            ) : null}
-          </nav>
+          <Navigation />
         </Navmenu>
         {user ? (
           <AuthButton onClick={onLogout}>
