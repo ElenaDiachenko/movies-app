@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const ContainerCard = styled.div`
   display: flex;
   width: 100%;
+  padding: 0 16px;
   gap: ${p => p.theme.space[4]}px;
   box-shadow: ${p => p.theme.boxShadows.accent};
 `;

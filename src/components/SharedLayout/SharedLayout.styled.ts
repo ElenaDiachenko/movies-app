@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  display: grid;
   position: relative;
   background: ${p => p.theme.colors.bg};
   color: ${p => p.theme.colors.text};
-  grid-template-columns: 1fr;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
   margin: 0 auto;
 `;
 export const Switch = styled.div`
@@ -33,14 +34,20 @@ export const HeaderWrap = styled.header`
   position: sticky;
   z-index: 999;
   height: 64px;
+  width: 100vw;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${p => p.theme.space[3]}px 0;
+  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[4]}px;
   background: ${p => p.theme.colors.bg};
-  padding: 0 ${p => p.theme.space[4]}px;
 `;
 
+export const Navmenu = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: ${p => p.theme.radii.sm};

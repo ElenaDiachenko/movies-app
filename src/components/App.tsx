@@ -18,6 +18,7 @@ const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
+const VideoList = lazy(() => import('./VideoList/VideoList'));
 const Account = lazy(() => import('pages/Account'));
 
 export const App = () => {
@@ -87,6 +88,12 @@ export const App = () => {
               path="cast"
               element={
                 <PrivatRoute redirectTo="./login " component={<Cast />} />
+              }
+            />
+            <Route
+              path="videos"
+              element={
+                <PrivatRoute redirectTo="./login " component={<VideoList />} />
               }
             />
             <Route

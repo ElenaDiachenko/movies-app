@@ -8,11 +8,12 @@ import { AuthButton } from 'components/AuthButton/AuthButton';
 import {
   Container,
   HeaderWrap,
+  Navmenu,
   Link,
   Switch,
   LogOutText,
 } from './SharedLayout.styled';
-import { Box } from '../Box';
+
 import { useStore } from 'stores/store';
 
 interface IProps {
@@ -36,7 +37,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
   return (
     <Container>
       <HeaderWrap>
-        <Box display="flex" alignItems="center" justifyContent="center">
+        <Navmenu>
           <Switch onClick={toggleTheme}>
             {theme === 'light' ? (
               <MdLightMode size={24} />
@@ -53,7 +54,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
               </>
             ) : null}
           </nav>
-        </Box>
+        </Navmenu>
         {user ? (
           <AuthButton onClick={onLogout}>
             <LogOutText>Logout</LogOutText>

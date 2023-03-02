@@ -12,7 +12,7 @@ export const Container = styled.div`
     right: 158px;
     position: absolute;
     width: 25%;
-    z-index: 15;
+    z-index: 1000;
     margin-bottom: ${p => p.theme.space[4]}px;
   }
 `;

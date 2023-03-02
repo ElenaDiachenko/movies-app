@@ -87,7 +87,13 @@ const Home = () => {
   const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
-    <main>
+    <main
+      style={{
+        padding: '0 16px',
+        width: '100vw',
+        flexGrow: 1,
+      }}
+    >
       <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (

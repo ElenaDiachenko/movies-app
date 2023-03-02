@@ -5,6 +5,7 @@ import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
 import { IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 import { IReviewsDTO } from 'interfaces/IReviewsDTO';
+import { IVideoDTO } from 'interfaces/IVideoDTO';
 
 const API_KEY = process.env.REACT_APP_MOVIE_IMDB_API_KEY;
 
@@ -147,6 +148,13 @@ const fetchNowPlayingMovies = async () => {
   return transformedData;
 };
 
+const fetchVideo = async (movieId: string) => {
+  const { data } = await axios.get<IVideoDTO>(
+    `movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
+  );
+  return data.results;
+};
+
 export const requests = {
   fetchTrendingMovies,
   fetchMoviesByKeyword,
@@ -157,4 +165,5 @@ export const requests = {
   fetchTopRatedMovies,
   fetchUpcomingMovies,
   fetchNowPlayingMovies,
+  fetchVideo,
 };

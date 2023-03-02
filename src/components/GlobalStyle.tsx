@@ -18,11 +18,20 @@ code {
     monospace;
 }
 #root {
-  flex-grow: 1;
+  min-width: 100vw;
+  min-height:100vh;
+  
   display: flex;
+  flex-direction:column;
   justify-content: center;
-  align-items: center;
+  
 }
+// #root {
+//   flex-grow: 1;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 ul,
 li {
   list-style: none;

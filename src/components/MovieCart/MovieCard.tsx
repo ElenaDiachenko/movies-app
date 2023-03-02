@@ -29,7 +29,14 @@ export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
           alt={title}
         />
 
-        <Box display="flex" flexDirection="column" gridGap={12} p={30} mb={30}>
+        <Box
+          display="flex"
+          flexGrow={1}
+          flexDirection="column"
+          gridGap={12}
+          p={16}
+          mb={30}
+        >
           <MovieTitle>{`${title} (${
             release_date ? release_date.slice(0, 4) : ''
           })`}</MovieTitle>
@@ -62,7 +69,13 @@ export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
         </Box>
       </ContainerCard>
       <ContainerCard>
-        <Box display="flex" flexDirection="column" gridGap={12} p={15}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          gridGap={12}
+          p={15}
+          width={1}
+        >
           <DescriptionName>Aditional information</DescriptionName>
           <Box as="ul" display="flex" gridGap={12}>
             <Box
@@ -83,6 +96,16 @@ export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
             >
               <Link to="reviews" state={location.state}>
                 Reviews
+              </Link>
+            </Box>
+            <Box
+              as="li"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Link to="videos" state={location.state}>
+                Videos
               </Link>
             </Box>
           </Box>
