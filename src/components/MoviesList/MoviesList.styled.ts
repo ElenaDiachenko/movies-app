@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 export const MoviesContainer = styled.ul`
   display: grid;
-  max-width: calc(100vw - 48px);
-
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: ${p => p.theme.space[5]}px;
   padding: ${p => p.theme.space[2]}px;
@@ -17,7 +15,7 @@ export const MovieItem = styled.li`
   display: flex;
   position: relative;
   flex-direction: column;
-  border-radius: ${p => p.theme.borders.none};
+  border-radius: ${p => p.theme.radii.sm};
   box-shadow: ${p => p.theme.boxShadows.accent};
   transition: ${p => p.theme.transition};
 

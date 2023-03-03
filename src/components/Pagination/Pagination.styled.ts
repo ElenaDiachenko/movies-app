@@ -5,7 +5,7 @@ export const PaginationContainer = styled.nav`
   justify-content: center;
   align-items: center;
   gap: ${p => p.theme.space[3]}px;
-  margin: ${p => p.theme.space[3]}px auto;
+  margin: ${p => p.theme.space[4]}px auto;
 
   @media screen and (min-width: 768px) {
     gap: ${p => p.theme.space[4]}px;
@@ -32,4 +32,3 @@ export const StyledButton = styled.button`
     background-color: ${p => p.theme.colors.accent};
   }
 `;
-

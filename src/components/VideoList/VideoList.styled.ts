@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  padding: ${p => p.theme.space[4]}px 0;
   gap: 16px;
   @media screen and (min-width: 960px) {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
   }
 `;
