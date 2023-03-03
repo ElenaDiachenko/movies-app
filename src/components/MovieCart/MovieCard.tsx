@@ -29,14 +29,7 @@ export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
           alt={title}
         />
 
-        <Box
-          display="flex"
-          flexGrow={1}
-          flexDirection="column"
-          gridGap={12}
-          p={16}
-          mb={30}
-        >
+        <Box display="flex" flexGrow={1} flexDirection="column" gridGap={12}>
           <MovieTitle>{`${title} (${
             release_date ? release_date.slice(0, 4) : ''
           })`}</MovieTitle>

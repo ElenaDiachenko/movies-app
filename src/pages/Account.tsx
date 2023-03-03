@@ -27,7 +27,12 @@ const Account = () => {
   const location = useLocation();
 
   return (
-    <main>
+    <main
+      style={{
+        padding: '0 16px',
+        minWidth: '100%',
+      }}
+    >
       <h1 style={{ textAlign: 'center', margin: '16px auto ' }}>My movies</h1>
 
       {movies.length > 0 ? (
@@ -47,7 +52,7 @@ const Account = () => {
           )}
         </MoviesContainer>
       ) : (
-        <Box display="flex" justifyContent="center" mt={16}>
+        <Box display="flex" justifyContent="center" mt={16} width={1}>
           No saved movies yet
         </Box>
       )}

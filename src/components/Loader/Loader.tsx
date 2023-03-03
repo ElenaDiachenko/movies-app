@@ -5,7 +5,7 @@ import { LoaderWrap } from './Loader.styled';
 export const Loader = () => {
   return (
     <LoaderWrap>
-      <TailSpin color="#3498db" height={80} width={80} />
+      <TailSpin color="#cc7c12" height={80} width={80} />
     </LoaderWrap>
   );
 };

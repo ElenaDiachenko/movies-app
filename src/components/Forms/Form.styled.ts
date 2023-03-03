@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
 
-export const Container = styled.div`
+export const Container = styled.main`
   width: 90%;
-  height: calc(100vh - 64px);
+  height: 100vh;
 
   margin: 0 auto;
+  padding-bottom: 16px;
   @media screen and (min-width: 768px) {
     width: 680px;
   }
@@ -61,7 +62,7 @@ export const ButtonBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 400px) {
     flex-direction: row;
     gap: 32px;
   }
@@ -72,7 +73,7 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 30%;
+  width: 35%;
   height: 50px;
 
   font-family: inherit;
@@ -91,11 +92,15 @@ const Button = styled.button`
   @media screen and (max-width: 768px) {
     height: 40px;
   }
+  @media screen and (max-width: 400px) {
+    width: 90%;
+  }
 `;
 
 export const SubmitButton = styled(Button)`
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
+
   &:hover,
   :focus {
     border: 1px solid ${p => p.theme.colors.accent};

@@ -8,7 +8,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    top: 8px;
+    top: 13px;
     right: 158px;
     position: absolute;
     width: 25%;
@@ -45,8 +45,8 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 38px;
   border: ${p => p.theme.borders.none};
   opacity: 0.8;
   transition: ${p => p.theme.transition};
