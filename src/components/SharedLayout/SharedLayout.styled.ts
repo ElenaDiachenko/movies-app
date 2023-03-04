@@ -17,9 +17,6 @@ export const Switch = styled.div`
   :hover {
     transform: scale(1.03);
   }
-  @media screen and (min-width: 768px) {
-    margin-right: 32px;
-  }
 `;
 export const LogOutText = styled.p`
   @media screen and (max-width: 767px) {

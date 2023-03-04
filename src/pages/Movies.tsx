@@ -8,6 +8,7 @@ import { IFormValues } from 'components/SearchBar/SearchBar';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { requests } from 'services/API';
 import { Box } from 'components/Box';
+import { Genres } from 'components/Genres/Genres';
 import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
@@ -93,9 +94,8 @@ const Home = () => {
         width: '100vw',
       }}
     >
-      <SearchBar
-        onSubmit={handleSubmit}
-      />
+      <Genres />
+      <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later</Box>
