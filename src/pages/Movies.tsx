@@ -90,7 +90,7 @@ const Home = () => {
     <main
       style={{
         padding: '0 16px',
-        minWidth: '100%',
+        width: '100vw',
       }}
     >
       <SearchBar onSubmit={handleSubmit} />

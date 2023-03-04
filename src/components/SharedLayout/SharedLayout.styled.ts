@@ -30,7 +30,7 @@ export const HeaderWrap = styled.header`
   top: 0;
   position: sticky;
   z-index: 999;
-  width: 100%;
+  width: 100vw;
   min-height: 64px;
   align-items: center;
   display: flex;

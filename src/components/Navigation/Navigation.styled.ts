@@ -24,3 +24,23 @@ export const Link = styled(NavLink)`
     margin-right: 32px;
   }
 `;
+
+export const Menu = styled.nav<{ open: boolean }>`
+  @media (max-width: 499px) {
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding: 16px;
+    gap: 28px;
+    background: ${p => p.theme.colors.bg};
+    position: fixed;
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100%;
+    padding-top: 64px;
+    transition: transform 0.3s ease-in-out;
+  }
+`;
