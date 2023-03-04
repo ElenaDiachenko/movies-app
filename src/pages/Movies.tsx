@@ -93,7 +93,9 @@ const Home = () => {
         width: '100vw',
       }}
     >
-      <SearchBar onSubmit={handleSubmit} />
+      <SearchBar
+        onSubmit={handleSubmit}
+      />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later</Box>

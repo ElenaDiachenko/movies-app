@@ -81,22 +81,28 @@ const Movies = () => {
     >
       <SearchBar onSubmit={handleSubmit} />
       {status === 'pending' && <Loader />}
-      {status === 'rejected' && (
+      {status === 'rejected' && movieQuery && (
         <Box>Oop! Something went wrong! Try again later</Box>
       )}
-      {status === 'resolved' && <MoviesList movies={movies} />}
-      {status === 'resolved' && totalMovies - movies.length > 0 ? (
-        <LoadMoreButton onClick={loadMore} />
-      ) : null}
-      {status === 'resolved' && totalMovies - movies.length <= 0 ? (
-        <Box>We're sorry, but you've reached the end of search results.</Box>
-      ) : null}
-
-      {status !== 'resolved' &&
-        !movieQuery &&
-        movieRows.map(row => (
-          <Slider key={row.id} title={row.title} fetchData={row.fetchData} />
-        ))}
+      {movieQuery ? (
+        <>
+          {status === 'resolved' ? <MoviesList movies={movies} /> : null}
+          {status === 'resolved' && totalMovies - movies.length > 0 ? (
+            <LoadMoreButton onClick={loadMore} />
+          ) : null}
+          {status === 'resolved' && totalMovies - movies.length <= 0 ? (
+            <Box>
+              We're sorry, but you've reached the end of search results.
+            </Box>
+          ) : null}
+        </>
+      ) : (
+        <>
+          {movieRows.map(row => (
+            <Slider key={row.id} title={row.title} fetchData={row.fetchData} />
+          ))}
+        </>
+      )}
     </main>
   );
 };
