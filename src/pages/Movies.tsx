@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
+import { IGenre } from 'interfaces/IGenresData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { requests } from 'services/API';
@@ -18,10 +19,12 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
   const [totalMovies, setTotalMovies] = useState(0);
+  const [selectedGenres, setSelectedGenres] = useState<string[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
 
+  console.log(selectedGenres, 'selectedGenres');
   useEffect(() => {
     if (movieQuery) {
       return;
@@ -94,8 +97,11 @@ const Home = () => {
         width: '100vw',
       }}
     >
-      <Genres />
       <SearchBar onSubmit={handleSubmit} />
+      <Genres
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+      />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
         <Box>Oop! Something went wrong! Try again later</Box>
