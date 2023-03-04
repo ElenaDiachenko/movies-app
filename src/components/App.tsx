@@ -22,12 +22,11 @@ const VideoList = lazy(() => import('./VideoList/VideoList'));
 const Account = lazy(() => import('pages/Account'));
 
 export const App = () => {
-  const { user, setAuthUser, setMovies } = useStore(
+  const { setAuthUser, setMovies } = useStore(
     state => ({
       loading: state.loading,
       error: state.error,
       setAuthUser: state.setAuthUser,
-      user: state.authUser,
       setMovies: state.setSavedMovies,
     }),
     shallow

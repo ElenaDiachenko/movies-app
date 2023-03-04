@@ -2,18 +2,11 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
 export const Container = styled.div`
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    margin: ${p => p.theme.space[4]}px auto;
-  }
+  width: 100%;
+  margin: ${p => p.theme.space[4]}px auto;
 
   @media screen and (min-width: 768px) {
-    top: 13px;
-    right: 158px;
-    position: absolute;
-    width: 25%;
-    z-index: 1000;
-    margin-bottom: ${p => p.theme.space[4]}px;
+    width: 50%;
   }
 `;
 export const SearchForm = styled(Form)`
