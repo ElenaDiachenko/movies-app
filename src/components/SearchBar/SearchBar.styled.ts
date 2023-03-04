@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
 export const Container = styled.div`
-  width: 100%;
+  width: 90%;
   margin: ${p => p.theme.space[4]}px auto;
   position: static;
 
