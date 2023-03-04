@@ -6,6 +6,7 @@ import { IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 import { IReviewsDTO } from 'interfaces/IReviewsDTO';
 import { IVideoDTO } from 'interfaces/IVideoDTO';
+import { IGenresData } from 'interfaces/IGenresData';
 
 const API_KEY = process.env.REACT_APP_MOVIE_IMDB_API_KEY;
 
@@ -155,6 +156,13 @@ const fetchVideo = async (movieId: string) => {
   return data.results;
 };
 
+const fetchGenreList = async () => {
+  const { data } = await axios.get<IGenresData>(
+    `genre/movie/list?api_key=${API_KEY}&language=en-US`
+  );
+  return data;
+};
+
 export const requests = {
   fetchTrendingMovies,
   fetchMoviesByKeyword,
@@ -166,4 +174,5 @@ export const requests = {
   fetchUpcomingMovies,
   fetchNowPlayingMovies,
   fetchVideo,
+  fetchGenreList,
 };

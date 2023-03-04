@@ -20,9 +20,6 @@ export const Link = styled(NavLink)`
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};
   }
-  @media screen and (min-width: 768px) {
-    margin-right: 32px;
-  }
 `;
 
 export const Menu = styled.nav<{ open: boolean }>`

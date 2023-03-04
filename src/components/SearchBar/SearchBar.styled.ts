@@ -4,9 +4,14 @@ import { Form, Field } from 'formik';
 export const Container = styled.div`
   width: 100%;
   margin: ${p => p.theme.space[4]}px auto;
+  position: static;
 
   @media screen and (min-width: 768px) {
-    width: 50%;
+    position: fixed;
+    top: -3px;
+    z-index: 999;
+    right: 134px;
+    width: 30%;
   }
 `;
 export const SearchForm = styled(Form)`
