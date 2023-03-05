@@ -6,8 +6,8 @@ import { AxiosError } from 'axios';
 import { Container, GenreItem } from './Genres.styled';
 
 interface IGenresProps {
-  selectedGenres: string[];
-  setSelectedGenres: (v: string[]) => void;
+  selectedGenres: IGenre[];
+  setSelectedGenres: (v: IGenre[]) => void;
 }
 
 export const Genres: FC<IGenresProps> = ({
@@ -36,10 +36,10 @@ export const Genres: FC<IGenresProps> = ({
   }, []);
 
   const toggleSelectGenre = (item: IGenre) => {
-    if (selectedGenres.includes(item.name)) {
-      setSelectedGenres([...selectedGenres.filter(g => g !== item.name)]);
+    if (selectedGenres.find(g => g.id === item.id)) {
+      setSelectedGenres([...selectedGenres.filter(g => g.id !== item.id)]);
     } else {
-      setSelectedGenres([...selectedGenres, item.name]);
+      setSelectedGenres([...selectedGenres, item]);
     }
   };
 
@@ -51,7 +51,9 @@ export const Genres: FC<IGenresProps> = ({
             <GenreItem
               onClick={() => toggleSelectGenre(g)}
               key={g.id}
-              className={selectedGenres.includes(g.name) ? 'active' : ''}
+              className={
+                selectedGenres.find(it => it.id === g.id) ? 'active' : ''
+              }
             >
               {g.name}
             </GenreItem>

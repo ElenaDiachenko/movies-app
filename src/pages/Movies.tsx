@@ -12,6 +12,7 @@ import { Box } from 'components/Box';
 import { Genres } from 'components/Genres/Genres';
 import { Loader } from 'components/Loader/Loader';
 import { Pagination } from 'components/Pagination/Pagination';
+import { useGenre } from 'hooks';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 const Home = () => {
@@ -19,14 +20,48 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
   const [totalMovies, setTotalMovies] = useState(0);
-  const [selectedGenres, setSelectedGenres] = useState<string[] | []>([]);
+  const [selectedGenres, setSelectedGenres] = useState<IGenre[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
+  const [title, setTitle] = useState('');
+  const genreForSerch = useGenre(selectedGenres);
 
-  console.log(selectedGenres, 'selectedGenres');
+  // search by genres
   useEffect(() => {
-    if (movieQuery) {
+    if (!genreForSerch) {
+      return;
+    }
+    try {
+      setStatus('pending');
+      (async function getMovies() {
+        const { results, total_pages } = await requests.fetchMoviesByGenre(
+          genreForSerch,
+          page
+        );
+
+        if (results.length === 0) {
+          setStatus('rejected');
+          return;
+        }
+        setMovies(results);
+        setTotalMovies(total_pages);
+        setTitle(
+          `Search result by genres: ${selectedGenres
+            .map(g => g.name.toLowerCase())
+            .join(', ')}`
+        );
+        setStatus('resolved');
+      })();
+    } catch (error) {
+      console.log((error as AxiosError).message);
+      setStatus('rejected');
+    }
+  }, [page, genreForSerch, selectedGenres]);
+
+  // search trending
+  useEffect(() => {
+    if (movieQuery || genreForSerch) {
       return;
     }
     try {
@@ -42,14 +77,16 @@ const Home = () => {
         }
         setMovies(results);
         setTotalMovies(total_pages);
+        setTitle('Trending today');
         setStatus('resolved');
       })();
     } catch (error) {
       console.log((error as AxiosError).message);
       setStatus('rejected');
     }
-  }, [page, movieQuery]);
+  }, [page, movieQuery, genreForSerch]);
 
+  // search by keyword
   useEffect(() => {
     if (!movieQuery) {
       return;
@@ -66,9 +103,12 @@ const Home = () => {
           );
           return;
         }
-        setStatus('resolved');
+
         setMovies(results);
         setTotalMovies(total_pages);
+        setTitle(`Search result by keyword: '${movieQuery}'`);
+        setSelectedGenres([]);
+        setStatus('resolved');
       })();
     } catch (error) {
       setStatus('rejected');
@@ -110,9 +150,7 @@ const Home = () => {
         <>
           <section style={{ flexGrow: 1 }}>
             <Box as="h1" mb={16}>
-              {movieQuery
-                ? `Search result by query '${movieQuery}'`
-                : 'Trending today'}
+              {title}
             </Box>
             {movies && <MoviesList movies={movies} />}
           </section>
