@@ -12,6 +12,7 @@ export const MoviesContainer = styled.ul`
 
 export const MovieItem = styled.li`
   width: 100%;
+  min-height: 350px;
   display: flex;
   position: relative;
   flex-direction: column;

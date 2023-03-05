@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const StyledCard = styled(motion.div)`
   padding: ${p => p.theme.space[3]}px;
-
+  min-height: 350px;
   @media screen and (min-device-width: 320px) and (max-device-width: 375px) {
     padding: ${p => p.theme.space[2]}px;
   }
@@ -11,6 +11,7 @@ export const StyledCard = styled(motion.div)`
 export const StyledCardBox = styled.div`
   padding-bottom: ${p => p.theme.space[3]}px;
   transition: ${p => p.theme.transition};
+  box-shadow: ${p => p.theme.boxShadows.primary};
 
   &:hover {
     transform: scale(1.08);
@@ -20,6 +21,7 @@ export const StyledCardBox = styled.div`
 export const ImageBox = styled(motion.div)`
   position: relative;
   width: 160px;
+
   @media screen and (min-width: 640px) {
     width: 200px;
   }

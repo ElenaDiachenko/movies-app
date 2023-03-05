@@ -44,12 +44,14 @@ const Account = () => {
                 <StyledLink to={`/movies/${id}`} state={{ from: location }}>
                   <MoviePoster src={IMG_PATH + poster_path} alt={title} />
                   <MovieTitle>{title}</MovieTitle>
+                  <Overlay>
+                    <Like
+                      onClick={() => deleteMovie({ id, title, poster_path })}
+                    >
+                      <FaHeart size={25} color={'red'} />
+                    </Like>
+                  </Overlay>
                 </StyledLink>
-                <Overlay>
-                  <Like onClick={() => deleteMovie({ id, title, poster_path })}>
-                    <FaHeart size={25} color={'red'} />
-                  </Like>
-                </Overlay>
               </MovieItem>
             ) : null
           )}

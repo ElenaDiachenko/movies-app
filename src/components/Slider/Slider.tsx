@@ -76,13 +76,12 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
       {status === 'pending' && (
         <Wrapper>
           <Container>
-            <Title>{title}</Title>
             <div style={{ position: 'relative' }}>
               <Left>
-                <MdChevronLeft size={40} />
+                <MdChevronLeft size={35} />
               </Left>
               <Right>
-                <MdChevronRight size={40} />
+                <MdChevronRight size={35} />
               </Right>
 
               <SkeletonCard />
@@ -92,33 +91,35 @@ export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
       )}
       {status === 'rejected' && null}
 
-      <Wrapper>
-        <Container>
-          <Title>{title}</Title>
+      {status === 'resolved' && (
+        <Wrapper>
+          <Container>
+            <Title>{title}</Title>
 
-          <div style={{ position: 'relative' }}>
-            <Left onClick={() => handleScroll('left')}>
-              <MdChevronLeft size={40} />
-            </Left>
-            <Right onClick={() => handleScroll('right')}>
-              <MdChevronRight size={40} />
-            </Right>
-            <SliderItemsBox ref={dragSlider}>
-              <SliderItemsBoxInner
-                ref={dragSlider}
-                drag="x"
-                dragConstraints={{ right: 0, left: -width }}
-              >
-                {movies.map((movie, id) =>
-                  movie?.poster_path ? (
-                    <SliderCard key={id} movie={movie} />
-                  ) : null
-                )}
-              </SliderItemsBoxInner>
-            </SliderItemsBox>
-          </div>
-        </Container>
-      </Wrapper>
+            <div style={{ position: 'relative' }}>
+              <Left onClick={() => handleScroll('left')}>
+                <MdChevronLeft size={35} />
+              </Left>
+              <Right onClick={() => handleScroll('right')}>
+                <MdChevronRight size={35} />
+              </Right>
+              <SliderItemsBox ref={dragSlider}>
+                <SliderItemsBoxInner
+                  ref={dragSlider}
+                  drag="x"
+                  dragConstraints={{ right: 0, left: -width }}
+                >
+                  {movies.map((movie, id) =>
+                    movie?.poster_path ? (
+                      <SliderCard key={id} movie={movie} />
+                    ) : null
+                  )}
+                </SliderItemsBoxInner>
+              </SliderItemsBox>
+            </div>
+          </Container>
+        </Wrapper>
+      )}
     </>
   );
 });

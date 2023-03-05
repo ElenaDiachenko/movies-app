@@ -20,9 +20,13 @@ export const SliderItemsBox = styled(motion.div)`
 export const SliderItemsBoxInner = styled(motion.div)`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
-  padding: ${p => p.theme.space[4]}px;
+  padding: ${p => p.theme.space[3]}px;
   cursor: grab;
 
+  @media screen and (min-width: 768px) {
+    gap: ${p => p.theme.space[3]}px;
+    padding: ${p => p.theme.space[4]}px;
+  }
   &::-webkit-scrollbar {
     display: none;
   }
