@@ -1,5 +1,5 @@
 import { FC, MouseEvent } from 'react';
-import { usePagination, DOTS } from 'hooks/usePagination';
+import { usePagination, DOTS } from 'hooks';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 import { PaginationContainer, StyledButton } from './Pagination.styled';

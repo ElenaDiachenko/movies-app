@@ -163,6 +163,14 @@ const fetchGenreList = async () => {
   return data;
 };
 
+const fetchMoviesByGenre = async (query: string, page: number) => {
+  const { data } = await axios.get<IMoviesDTO>(
+    `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${query}`
+  );
+  const transformedData = getBaseTransformedData(data.results);
+  return { total_pages: data.total_pages, results: transformedData };
+};
+
 export const requests = {
   fetchTrendingMovies,
   fetchMoviesByKeyword,
@@ -175,4 +183,5 @@ export const requests = {
   fetchNowPlayingMovies,
   fetchVideo,
   fetchGenreList,
+  fetchMoviesByGenre,
 };
