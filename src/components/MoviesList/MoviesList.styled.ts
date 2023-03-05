@@ -42,3 +42,17 @@ export const StyledLink = styled(Link)`
   color: ${p => p.theme.colors.text};
   font-weight: ${p => p.theme.fontWeights.medium};
 `;
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: ${p => p.theme.transition};
+
+  :hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+`;

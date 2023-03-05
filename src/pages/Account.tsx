@@ -12,6 +12,7 @@ import {
   MoviePoster,
   MovieTitle,
   StyledLink,
+  Overlay
 } from 'components/MoviesList/MoviesList.styled';
 
 const Account = () => {
@@ -44,9 +45,11 @@ const Account = () => {
                   <MoviePoster src={IMG_PATH + poster_path} alt={title} />
                   <MovieTitle>{title}</MovieTitle>
                 </StyledLink>
-                <Like onClick={() => deleteMovie({ id, title, poster_path })}>
-                  <FaHeart size={25} color={'red'} />
-                </Like>
+                <Overlay>
+                  <Like onClick={() => deleteMovie({ id, title, poster_path })}>
+                    <FaHeart size={25} color={'red'} />
+                  </Like>
+                </Overlay>
               </MovieItem>
             ) : null
           )}

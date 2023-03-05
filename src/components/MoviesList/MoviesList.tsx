@@ -7,6 +7,7 @@ import {
   MoviePoster,
   MovieTitle,
   StyledLink,
+  Overlay,
 } from './MoviesList.styled';
 import { IMG_PATH } from 'pages/Movies';
 import { IMovieData } from 'interfaces/IMovieData';
@@ -34,7 +35,10 @@ export const MoviesList = ({ movies }: { movies: IMovieData[] }) => {
                 alt={movie.title}
               />
               <MovieTitle>{movie.title}</MovieTitle>
-              <LikeBtn movie={movie} />
+              <Overlay>
+                <LikeBtn movie={movie} />
+              </Overlay>
+
               {/* <div
                 onClick={e => getVideo(movie.id, e)}
                 style={{ position: 'absolute', top: 50, right: 7 }}
