@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const MoviesContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-gap: ${p => p.theme.space[5]}px;
   padding: ${p => p.theme.space[2]}px;
   margin-left: auto;

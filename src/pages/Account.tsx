@@ -12,7 +12,7 @@ import {
   MoviePoster,
   MovieTitle,
   StyledLink,
-  Overlay
+  Overlay,
 } from 'components/MoviesList/MoviesList.styled';
 
 const Account = () => {
