@@ -48,7 +48,7 @@ export const LoginForm = () => {
   };
   return (
     <Container>
-      {error ? <Title>Something went wrong, try again later</Title> : null}
+      {error ? <Title>{error}</Title> : null}
       <Title>Log In</Title>
       <Formik
         initialValues={initialValues}
