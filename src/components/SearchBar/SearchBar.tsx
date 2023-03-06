@@ -53,7 +53,7 @@ export const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
                 onChange={handleChange}
                 autoComplete="off"
                 autoFocus
-                placeholder="Search movies"
+                placeholder="Search keyword..."
               />
             </SearchForm>
           );

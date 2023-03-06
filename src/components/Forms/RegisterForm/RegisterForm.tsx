@@ -1,6 +1,6 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, FormikHelpers } from 'formik';
+import { TailSpin } from 'react-loader-spinner';
 import { shallow } from 'zustand/shallow';
 import {
   Container,
@@ -28,17 +28,16 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
-  const { loading, error, register, user } = useStore(
+  const { register, loading, error } = useStore(
     state => ({
       loading: state.loading,
       error: state.error,
       register: state.registerUser,
-      user: state.authUser,
     }),
     shallow
   );
   const navigate = useNavigate();
-  console.log(user, 'register');
+
   const handleSubmit = (
     value: IFormRegisterValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormRegisterValues>
@@ -49,6 +48,7 @@ export const RegisterForm = () => {
   };
   return (
     <Container>
+      {error ? <Title>Something went wrong, try again later</Title> : null}
       <Title>Register</Title>
       <Formik
         initialValues={initialValues}
@@ -60,11 +60,7 @@ export const RegisterForm = () => {
             <Form>
               <Label>
                 Name
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your username"
-                />
+                <Input type="text" name="name" placeholder="Enter your name" />
                 <Message name="name" component="span" />
               </Label>
               <Label>
@@ -72,7 +68,7 @@ export const RegisterForm = () => {
                 <Input
                   type="email"
                   name="email"
-                  placeholder="Enter your email adress"
+                  placeholder="example@gmail.com"
                 />
                 <Message name="email" component="span" />
               </Label>
@@ -88,7 +84,11 @@ export const RegisterForm = () => {
               </Label>
               <ButtonBox>
                 <SubmitButton type="submit" disabled={isSubmitting}>
-                  Register
+                  {!loading ? (
+                    <span>Register</span>
+                  ) : (
+                    <TailSpin color="#fff" height={30} width={30} />
+                  )}
                 </SubmitButton>
                 <ButtonStyledLink onClick={() => navigate('/login')}>
                   Log In

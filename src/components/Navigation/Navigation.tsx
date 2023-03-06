@@ -16,7 +16,7 @@ export const Navigation = () => {
   const close = () => setOpen(false);
   return (
     <>
-      <Menu open={open}>
+      <Menu open={open} role="navigation" aria-label="primary">
         <Link to="/" onClick={() => close()}>
           Home
         </Link>

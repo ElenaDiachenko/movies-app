@@ -7,5 +7,9 @@ type AuthProps = {
 };
 
 export const AuthButton: FC<AuthProps> = ({ onClick, children }) => {
-  return <StyledButton onClick={() => onClick()}>{children}</StyledButton>;
+  return (
+    <StyledButton onClick={() => onClick()} type="button">
+      {children}
+    </StyledButton>
+  );
 };

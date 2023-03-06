@@ -10,8 +10,17 @@ interface Props {
 }
 export const Hamburger: FC<Props> = ({ open, setOpen }) => {
   return (
-    <StyledHamburger open={open} onClick={() => setOpen(!open)}>
-      {open ? <CgClose size={24} /> : <GiHamburgerMenu size={24} />}
+    <StyledHamburger
+      open={open}
+      onClick={() => setOpen(!open)}
+      aria-expanded={open}
+      aria-label="Menu"
+    >
+      {open ? (
+        <CgClose size={24} aria-hidden="true" />
+      ) : (
+        <GiHamburgerMenu size={24} aria-hidden="true" />
+      )}
     </StyledHamburger>
   );
 };

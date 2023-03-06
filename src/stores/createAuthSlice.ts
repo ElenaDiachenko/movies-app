@@ -44,14 +44,15 @@ export const createAuthSlice: StateCreator<
         if (currentUser?.email) {
           set({
             authUser: { email: currentUser.email },
-            loading: false,
             error: null,
           });
         }
       });
     } catch (error: any) {
-      set({ error: error.message, loading: false });
+      set({ error: error.message });
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
   },
 
@@ -69,11 +70,13 @@ export const createAuthSlice: StateCreator<
           email: createdUser.email,
         };
 
-        set({ authUser: payload, loading: false, error: null });
+        set({ authUser: payload, error: null });
       }
     } catch (error: any) {
-      set({ error: error.message, loading: false });
+      set({ error: error.message });
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
   },
 
@@ -85,13 +88,14 @@ export const createAuthSlice: StateCreator<
       if (auth.currentUser?.email) {
         set({
           authUser: { email: auth.currentUser.email },
-          loading: false,
           error: null,
         });
       }
     } catch (error: any) {
-      set({ error: error.message, loading: false });
+      set({ error: error.message });
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
   },
 
@@ -99,10 +103,12 @@ export const createAuthSlice: StateCreator<
     set({ loading: true });
     try {
       await signOut(auth);
-      set({ authUser: null, loading: false, error: null, movies: [] });
+      set({ authUser: null, error: null, movies: [] });
     } catch (error: any) {
-      set({ error: error.message, loading: false });
+      set({ error: error.message });
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
   },
 });

@@ -22,10 +22,8 @@ interface IProps {
 }
 
 export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
-  const { loading, error, onLogout, user } = useStore(
+  const { onLogout, user } = useStore(
     state => ({
-      loading: state.loading,
-      error: state.error,
       onLogout: state.logoutUser,
       user: state.authUser,
     }),
@@ -38,11 +36,17 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
     <Container>
       <HeaderWrap>
         <Navmenu>
-          <Switch onClick={toggleTheme}>
+          <Switch
+            onClick={toggleTheme}
+            role="button"
+            title="Toggles light & dark theme"
+            aria-label="auto"
+            aria-live="polite"
+          >
             {theme === 'light' ? (
-              <MdLightMode size={24} />
+              <MdLightMode size={24} aria-hidden="true" />
             ) : (
-              <MdDarkMode size={24} />
+              <MdDarkMode size={24} aria-hidden="true" />
             )}
           </Switch>
           <Navigation />
@@ -50,12 +54,12 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
         {user ? (
           <AuthButton onClick={onLogout}>
             <LogOutText>Logout</LogOutText>
-            <MdLogout size={22} />
+            <MdLogout size={22} aria-hidden="true" />
           </AuthButton>
         ) : pathname !== '/login' && pathname !== '/register' ? (
           <AuthButton onClick={() => navigate('/login')}>
             <LogOutText>LogIn</LogOutText>
-            <MdLogin size={22} />
+            <MdLogin size={22} aria-hidden="true" />
           </AuthButton>
         ) : null}
       </HeaderWrap>

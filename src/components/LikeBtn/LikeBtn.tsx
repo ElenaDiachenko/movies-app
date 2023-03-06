@@ -41,9 +41,19 @@ export const LikeBtn: FC<LikeBtnProps> = ({ movie }) => {
   return (
     <Like onClick={toggleMovie}>
       {like ? (
-        <FaHeart size={25} color={'red'} />
+        <FaHeart
+          size={25}
+          color={'red'}
+          role="button"
+          aria-label="Remove movie from saved"
+        />
       ) : (
-        <FaRegHeart size={25} color={'red'} />
+        <FaRegHeart
+          size={25}
+          color={'red'}
+          role="button"
+          aria-label="Add movie to saved"
+        />
       )}
     </Like>
   );

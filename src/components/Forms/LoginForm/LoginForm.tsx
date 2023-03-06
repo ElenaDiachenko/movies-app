@@ -1,4 +1,5 @@
 import { Formik, Form, FormikHelpers } from 'formik';
+import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import {
@@ -25,17 +26,15 @@ export type IFormLoginValues = {
   password: string;
 };
 export const LoginForm = () => {
-  const { loading, error, login, user } = useStore(
+  const { loading, error, login } = useStore(
     state => ({
       loading: state.loading,
       error: state.error,
       login: state.loginUser,
-      user: state.authUser,
     }),
     shallow
   );
   const navigate = useNavigate();
-  console.log(user, 'login');
 
   const handleSubmit = (
     value: IFormLoginValues,
@@ -47,6 +46,7 @@ export const LoginForm = () => {
   };
   return (
     <Container>
+      {error ?<Title>Something went wrong, try again later</Title>:null}
       <Title>Log In</Title>
       <Formik
         initialValues={initialValues}
@@ -61,7 +61,7 @@ export const LoginForm = () => {
                 <Input
                   type="email"
                   name="email"
-                  placeholder="Enter your email adress"
+                  placeholder="example@gmail.com"
                 />
                 <Message name="email" component="span" />
               </Label>
@@ -77,7 +77,11 @@ export const LoginForm = () => {
               </Label>
               <ButtonBox>
                 <SubmitButton type="submit" disabled={isSubmitting}>
-                  Login
+                  {!loading ? (
+                    <span>Login</span>
+                  ) : (
+                    <TailSpin color="#fff" height={30} width={30} />
+                  )}
                 </SubmitButton>
                 <ButtonStyledLink onClick={() => navigate('/register')}>
                   Register

@@ -33,7 +33,7 @@ export const App = () => {
   );
 
   const [theme, setTheme] = useState(
-    localStorage.getItem('MOVIE_APP') || 'light'
+    localStorage.getItem('MOVIE_APP') || 'dark'
   );
 
   useEffect(() => {

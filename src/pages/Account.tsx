@@ -36,7 +36,7 @@ const Account = () => {
     >
       <h1 style={{ textAlign: 'center', margin: '16px auto ' }}>My movies</h1>
 
-      {movies.length > 0 ? (
+      {movies && movies?.length > 0 ? (
         <MoviesContainer>
           {movies.map(({ id, title, poster_path }) =>
             poster_path ? (
@@ -48,7 +48,12 @@ const Account = () => {
                     <Like
                       onClick={() => deleteMovie({ id, title, poster_path })}
                     >
-                      <FaHeart size={25} color={'red'} />
+                      <FaHeart
+                        size={25}
+                        color={'red'}
+                        role="button"
+                        aria-label="Remove movie from saved"
+                      />
                     </Like>
                   </Overlay>
                 </StyledLink>
