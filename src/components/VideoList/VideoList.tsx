@@ -5,7 +5,6 @@ import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { requests } from 'services/API';
 import { IVideoResultDTO } from 'interfaces/IVideoDTO';
-import { Loader } from '../Loader/Loader';
 import { Player } from 'components/Player/Player';
 import { Container, StyledItem } from './VideoList.styled';
 

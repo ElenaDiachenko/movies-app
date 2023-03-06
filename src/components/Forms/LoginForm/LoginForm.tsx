@@ -26,27 +26,29 @@ export type IFormLoginValues = {
   password: string;
 };
 export const LoginForm = () => {
-  const { loading, error, login } = useStore(
+  const { loading, error, login, setMovies } = useStore(
     state => ({
       loading: state.loading,
       error: state.error,
       login: state.loginUser,
+      setMovies: state.setSavedMovies,
     }),
     shallow
   );
   const navigate = useNavigate();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     value: IFormLoginValues,
     { resetForm, setSubmitting }: FormikHelpers<IFormLoginValues>
   ) => {
     setSubmitting(false);
-    login(value);
+    await login(value);
+    await setMovies();
     resetForm();
   };
   return (
     <Container>
-      {error ?<Title>Something went wrong, try again later</Title>:null}
+      {error ? <Title>Something went wrong, try again later</Title> : null}
       <Title>Log In</Title>
       <Formik
         initialValues={initialValues}

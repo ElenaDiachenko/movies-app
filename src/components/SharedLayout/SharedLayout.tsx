@@ -53,7 +53,7 @@ export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
         </Navmenu>
         {user ? (
           <AuthButton onClick={onLogout}>
-            <LogOutText>Logout</LogOutText>
+            <LogOutText>LogOut</LogOutText>
             <MdLogout size={22} aria-hidden="true" />
           </AuthButton>
         ) : pathname !== '/login' && pathname !== '/register' ? (

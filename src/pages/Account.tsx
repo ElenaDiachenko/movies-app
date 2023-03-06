@@ -27,6 +27,14 @@ const Account = () => {
 
   const location = useLocation();
 
+  const removeMovie = (
+    id: number,
+    title: string,
+    poster_path: string
+  ): void => {
+    deleteMovie({ id, title, poster_path });
+  };
+
   return (
     <main
       style={{
@@ -46,7 +54,10 @@ const Account = () => {
                   <MovieTitle>{title}</MovieTitle>
                   <Overlay>
                     <Like
-                      onClick={() => deleteMovie({ id, title, poster_path })}
+                      onClick={e => {
+                        e.preventDefault();
+                        removeMovie(id, title, poster_path);
+                      }}
                     >
                       <FaHeart
                         size={25}
