@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 
 export const StyledCard = styled(motion.div)`
   padding: ${p => p.theme.space[3]}px;
-  min-height: 350px;
+  min-height: 300px;
+  @media screen and (min-width: 768px) {
+    min-height: 350px;
+  }
   @media screen and (min-device-width: 320px) and (max-device-width: 375px) {
     padding: ${p => p.theme.space[2]}px;
   }

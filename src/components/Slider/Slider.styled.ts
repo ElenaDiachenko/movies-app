@@ -8,6 +8,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 export const Title = styled.h3`
+  margin-top: ${p => p.theme.space[3]}px;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.l};
 `;
@@ -20,7 +21,7 @@ export const SliderItemsBox = styled(motion.div)`
 export const SliderItemsBoxInner = styled(motion.div)`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
-  padding: ${p => p.theme.space[3]}px;
+  padding: ${p => p.theme.space[2]}px;
   cursor: grab;
 
   @media screen and (min-width: 768px) {

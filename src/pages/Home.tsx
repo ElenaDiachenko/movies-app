@@ -75,8 +75,7 @@ const Movies = () => {
       style={{
         overflow: 'hidden',
         padding: '0 16px',
-        width: '100vw',
-        flexGrow: 1,
+        width: '98vw',
       }}
     >
       <SearchBar onSubmit={handleSubmit} />
