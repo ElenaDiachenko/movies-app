@@ -45,7 +45,7 @@ const ButtonIcon = styled.div`
   transition: ${p => p.theme.transition};
   cursor: pointer;
   z-index: 10;
-  bottom: calc(50% - 20px); ;
+  bottom: calc(50% - 20px);
 `;
 
 export const Left = styled(ButtonIcon)`

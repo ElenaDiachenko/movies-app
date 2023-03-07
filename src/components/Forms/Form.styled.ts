@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 
 export const Container = styled.main`
   width: 90%;
-  height: 100vh;
+  height: calc(100vh - 64px);
 
   margin: 0 auto;
   padding-bottom: 16px;

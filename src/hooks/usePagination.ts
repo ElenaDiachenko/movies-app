@@ -6,14 +6,14 @@ const range = (start: number, end: number) => {
   return Array.from({ length }, (_, index) => index + start);
 };
 type PaginationProps = {
-  totalPageCount: number;
+  total: number;
   buttonConst: number;
   siblingCount: number;
   currentPage: number;
 };
 
 export const usePagination = ({
-  totalPageCount,
+  total,
   buttonConst,
   siblingCount,
   currentPage,
@@ -21,34 +21,28 @@ export const usePagination = ({
   const paginationRange = useMemo(() => {
     const totalPageNumbers = buttonConst + 2 * siblingCount;
 
-    if (totalPageNumbers >= totalPageCount) {
-      return range(1, totalPageCount);
+    if (totalPageNumbers >= total) {
+      return range(1, total);
     }
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-    const rightSiblingIndex = Math.min(
-      currentPage + siblingCount,
-      totalPageCount
-    );
+    const rightSiblingIndex = Math.min(currentPage + siblingCount, total);
 
     const shouldShowLeftDots = leftSiblingIndex > 2;
-    const shouldShowRightDots = rightSiblingIndex <= totalPageCount - 2;
+    const shouldShowRightDots = rightSiblingIndex <= total - 2;
 
     const firstPageIndex = 1;
-    const lastPageIndex = totalPageCount;
+    const lastPageIndex = total;
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       let leftItemCount = 3 + 2 * siblingCount;
       let leftRange = range(1, leftItemCount);
 
-      return [...leftRange, DOTS, totalPageCount];
+      return [...leftRange, DOTS, total];
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
       let rightItemCount = 3 + 2 * siblingCount;
-      let rightRange = range(
-        totalPageCount - rightItemCount + 1,
-        totalPageCount
-      );
+      let rightRange = range(total - rightItemCount + 1, total);
 
       return [firstPageIndex, DOTS, ...rightRange];
     }
@@ -57,7 +51,7 @@ export const usePagination = ({
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
-  }, [totalPageCount, siblingCount, currentPage, buttonConst]);
+  }, [total, siblingCount, currentPage, buttonConst]);
 
   return paginationRange;
 };

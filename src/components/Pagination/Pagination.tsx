@@ -18,15 +18,12 @@ export const Pagination: FC<PaginationProps> = ({
   total,
   currentPage,
   buttonConst,
-  contentPerPage,
   limit,
   siblingCount,
   paginate,
 }) => {
-  const totalPageCount = Math.ceil(total / limit);
-
   const paginationRange = usePagination({
-    totalPageCount,
+    total,
     buttonConst,
     siblingCount,
     currentPage,
@@ -43,6 +40,7 @@ export const Pagination: FC<PaginationProps> = ({
       {currentPage > 1 && (
         <StyledButton
           aria-label="previous"
+          className="hidden"
           onClick={() => paginate(currentPage - 1)}
         >
           <BsArrowLeft size={23} />
@@ -65,9 +63,10 @@ export const Pagination: FC<PaginationProps> = ({
           );
         })}
 
-      {currentPage !== totalPageCount && (
+      {currentPage !== total && (
         <StyledButton
           aria-label="next"
+          className="hidden"
           onClick={() => paginate(currentPage + 1)}
         >
           <BsArrowRight size={23} />

@@ -155,7 +155,7 @@ const Home = () => {
             {movies && <MoviesList movies={movies} />}
           </section>
           <section style={{ flexGrow: 0 }}>
-            {totalMovies > limit && (
+            {totalMovies >= page && (
               <Pagination
                 limit={limit}
                 total={totalMovies}

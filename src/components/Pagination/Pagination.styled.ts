@@ -31,4 +31,9 @@ export const StyledButton = styled.button`
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};
   }
+  &.hidden {
+    @media screen and (max-width: 499px) {
+      display: none;
+    }
+  }
 `;
