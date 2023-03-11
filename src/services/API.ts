@@ -26,7 +26,7 @@ const getBaseTransformedData = (data: ResultDTO[]) => {
     }));
   }
 
-  const transformResult: ResultDTO[] = getTransformedArray(data, state.movies, {
+  const transformResult = getTransformedArray(data, state.movies, {
     saved: true,
   });
 
