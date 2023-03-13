@@ -1,4 +1,3 @@
-
 import { useLocation } from 'react-router-dom';
 import {
   MovieItem,
@@ -8,14 +7,14 @@ import {
   Overlay,
 } from './MoviesList.styled';
 import { LikeBtn } from 'components/LikeBtn/LikeBtn';
-import { IMovieData } from 'interfaces/IMovieData';
+import { MovieItemType } from 'interfaces/MovieDataTypes';
 import { IMG_PATH } from 'pages/Movies';
 
 type MovieItemCardProps = {
-  movie: IMovieData;
+  movie: MovieItemType;
 };
 
-export const MovieItemCard = ({ movie }:MovieItemCardProps) => {
+export const MovieItemCard = ({ movie }: MovieItemCardProps) => {
   const location = useLocation();
 
   return (

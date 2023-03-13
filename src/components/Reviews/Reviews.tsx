@@ -5,11 +5,11 @@ import { toast } from 'react-toastify';
 import { requests } from 'services/API';
 import { Container, Item, AuthorName, Content } from './Reviews.styled';
 import { Loader } from 'components/Loader/Loader';
-import { IReviewData } from 'interfaces/IMovieData';
+import { ReviewDataType } from 'interfaces/MovieDataTypes';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState<IReviewData[] | []>([]);
+  const [reviews, setReviews] = useState<ReviewDataType[] | []>([]);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {

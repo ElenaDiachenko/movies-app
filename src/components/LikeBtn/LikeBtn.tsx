@@ -5,11 +5,11 @@ import { shallow } from 'zustand/shallow';
 import { toast } from 'react-toastify';
 
 import { useStore } from 'stores/store';
-import { IMovieData } from 'interfaces/IMovieData';
+import { MovieItemType } from 'interfaces/MovieDataTypes';
 import { Like } from './LikeBtn.styled';
 
 type LikeBtnProps = {
-  movie: IMovieData;
+  movie: MovieItemType;
 };
 export const LikeBtn = ({ movie }: LikeBtnProps) => {
   const { id, title, poster_path, saved } = movie;

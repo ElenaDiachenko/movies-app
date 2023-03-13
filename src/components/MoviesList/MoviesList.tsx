@@ -1,9 +1,12 @@
 import { MovieItemCard } from './MovieItemCard';
 import { MoviesContainer } from './MoviesList.styled';
+import { MovieListDataType } from 'services/API';
 
-import { IMovieData } from 'interfaces/IMovieData';
+type MoviesListProps = {
+  movies: MovieListDataType;
+};
 
-export const MoviesList = ({ movies }: { movies: IMovieData[] }) => {
+export const MoviesList = ({ movies }: MoviesListProps) => {
   return (
     <MoviesContainer>
       {movies.map(movie =>
