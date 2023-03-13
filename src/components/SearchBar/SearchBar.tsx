@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { Formik } from 'formik';
 import { useSearchParams } from 'react-router-dom';
 import { HiSearch } from 'react-icons/hi';
@@ -12,11 +12,11 @@ const initialValues = {
   value: '',
 };
 
-interface SearchBarProps {
+type SearchBarProps = {
   onSubmit: (values: IFormValues) => void;
-}
+};
 
-export const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+export const SearchBar = ({ onSubmit }: SearchBarProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
 

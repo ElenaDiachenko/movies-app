@@ -64,6 +64,7 @@ const Account = () => {
                         color={'red'}
                         role="button"
                         aria-label="Remove movie from saved"
+                        title="Remove movie from saved"
                       />
                     </Like>
                   </Overlay>

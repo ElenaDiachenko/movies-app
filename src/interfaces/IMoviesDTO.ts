@@ -18,9 +18,12 @@ export interface ResultDTO {
   media_type?: string;
   genre_ids: number[];
   popularity: number;
-  saved?: boolean;
   release_date: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface ITransformResultDTO extends ResultDTO {
+  saved?: boolean;
 }

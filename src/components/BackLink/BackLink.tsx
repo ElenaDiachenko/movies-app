@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { HiArrowLeft } from 'react-icons/hi';
 import { StyledLink } from './BackLink.styled';
 
@@ -7,7 +7,7 @@ type BackLinkProps = {
   children: ReactNode;
 };
 
-export const BackLink: FC<BackLinkProps> = ({ to, children }) => {
+export const BackLink = ({ to, children }: BackLinkProps) => {
   return (
     <StyledLink to={to}>
       <HiArrowLeft size="20" />

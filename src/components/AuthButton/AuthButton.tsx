@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { StyledButton } from './AuthButton.styled';
 
 type AuthProps = {
@@ -6,7 +6,7 @@ type AuthProps = {
   children: ReactNode;
 };
 
-export const AuthButton: FC<AuthProps> = ({ onClick, children }) => {
+export const AuthButton = ({ onClick, children }: AuthProps) => {
   return (
     <StyledButton onClick={() => onClick()} type="button">
       {children}

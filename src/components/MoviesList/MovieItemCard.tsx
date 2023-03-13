@@ -1,4 +1,4 @@
-import { FC } from 'react';
+
 import { useLocation } from 'react-router-dom';
 import {
   MovieItem,
@@ -15,7 +15,7 @@ type MovieItemCardProps = {
   movie: IMovieData;
 };
 
-export const MovieItemCard: FC<MovieItemCardProps> = ({ movie }) => {
+export const MovieItemCard = ({ movie }:MovieItemCardProps) => {
   const location = useLocation();
 
   return (

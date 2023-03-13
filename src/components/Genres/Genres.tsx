@@ -1,19 +1,16 @@
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect } from 'react';
 import { requests } from 'services/API';
 import { IGenre } from 'interfaces/IGenresData';
 import { AxiosError } from 'axios';
 
 import { Container, GenreItem } from './Genres.styled';
 
-interface IGenresProps {
+type GenresProps = {
   selectedGenres: IGenre[];
-  setSelectedGenres: (v: IGenre[]) => void;
-}
+  setSelectedGenres: React.Dispatch<React.SetStateAction<[] | IGenre[]>>;
+};
 
-export const Genres: FC<IGenresProps> = ({
-  selectedGenres,
-  setSelectedGenres,
-}) => {
+export const Genres = ({ selectedGenres, setSelectedGenres }: GenresProps) => {
   const [genres, setGenres] = useState<IGenre[] | []>([]);
   const [status, setStatus] = useState('idle');
 

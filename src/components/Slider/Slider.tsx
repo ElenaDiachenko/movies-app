@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo, FC } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { AxiosError } from 'axios';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
@@ -15,28 +15,25 @@ import {
 import { IMovieData } from 'interfaces/IMovieData';
 import { SkeletonCard } from './SkeletonCard';
 
-interface SliderProps {
+type SliderPropsType={
   title: string;
   fetchData: () => Promise<IMovieData[]>;
 }
 
-export const Slider: FC<SliderProps> = memo(({ title, fetchData }) => {
+export const Slider = memo(({ title, fetchData }:SliderPropsType) => {
   const [movies, setMovies] = useState<IMovieData[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [width, setWidth] = useState(0);
-  // const [page, setPage] = useState(1);
-  // const [element, setElement] = useState<any>(null);
   const dragSlider = useRef<HTMLDivElement>(null);
 
-  // console.log(page);
   useEffect(() => {
     if (dragSlider?.current?.scrollWidth && dragSlider?.current?.offsetWidth) {
       setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-      // setElement(dragSlider.current.scrollWidth);
     }
   }, [dragSlider]);
-  // console.log(width, 'width');
-  // console.log(element, 'element');
+
+
+
   useEffect(() => {
     try {
       setStatus('pending');

@@ -18,3 +18,7 @@ export const useStore = create<AuthSlice & MovieSlice>()(
     )
   )
 );
+
+export type PersistState = {
+  state: (AuthSlice & MovieSlice) | '';
+};

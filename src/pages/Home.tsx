@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { requests } from 'services/API';
+import { movieRows } from 'utils/constants';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
 import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
@@ -19,13 +20,6 @@ const Movies = () => {
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
-
-  const movieRows = [
-    { id: '1', title: 'UpComming', fetchData: requests.fetchUpcomingMovies },
-    { id: '2', title: 'NowPlaying', fetchData: requests.fetchNowPlayingMovies },
-    { id: '3', title: 'TopRated', fetchData: requests.fetchTopRatedMovies },
-    { id: '4', title: 'Popular', fetchData: requests.fetchPopularMovies },
-  ];
 
   useEffect(() => {
     if (!movieQuery) {

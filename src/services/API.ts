@@ -7,11 +7,14 @@ import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 import { IReviewsDTO } from 'interfaces/IReviewsDTO';
 import { IVideoDTO } from 'interfaces/IVideoDTO';
 import { IGenresData } from 'interfaces/IGenresData';
+import { PersistState } from 'stores/store';
 
 const API_KEY = process.env.REACT_APP_MOVIE_IMDB_API_KEY;
 
 const getBaseTransformedData = (data: ResultDTO[]) => {
-  const { state } = JSON.parse(localStorage.getItem('state') || '');
+  const { state }: PersistState = JSON.parse(
+    localStorage.getItem('state') || ''
+  );
 
   if (state === '' || !state?.movies?.length) {
     return data.map(it => ({

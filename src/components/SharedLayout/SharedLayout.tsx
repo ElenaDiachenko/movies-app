@@ -1,4 +1,4 @@
-import { Suspense, FC } from 'react';
+import { Suspense } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
@@ -16,12 +16,12 @@ import {
 
 import { useStore } from 'stores/store';
 
-interface IProps {
+type SharedLayoutProps = {
   toggleTheme: () => void;
   theme: string;
-}
+};
 
-export const SharedLayout: FC<IProps> = ({ toggleTheme, theme }) => {
+export const SharedLayout = ({ toggleTheme, theme }: SharedLayoutProps) => {
   const { onLogout, user } = useStore(
     state => ({
       onLogout: state.logoutUser,

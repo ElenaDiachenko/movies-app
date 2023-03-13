@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { usePagination, DOTS } from 'hooks';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
@@ -14,14 +14,14 @@ type PaginationProps = {
   paginate: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination = ({
   total,
   currentPage,
   buttonConst,
   limit,
   siblingCount,
   paginate,
-}) => {
+}: PaginationProps) => {
   const paginationRange = usePagination({
     total,
     buttonConst,

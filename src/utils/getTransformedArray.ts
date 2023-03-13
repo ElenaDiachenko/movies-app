@@ -1,12 +1,12 @@
-import { ResultDTO } from 'interfaces/IMoviesDTO';
+import { ResultDTO, ITransformResultDTO } from 'interfaces/IMoviesDTO';
 import { ISavedMovieData } from 'interfaces/ISavedMovieData';
 
 export const getTransformedArray = (
   arr1: ResultDTO[],
   arr2: ISavedMovieData[],
-  value: {}
+  value: {saved:boolean}
 ) => {
-  let result: ResultDTO[] = [];
+  let result: ITransformResultDTO[] = [];
   arr1.forEach(item1 => {
     arr2.forEach(item => {
       if (item.id === item1.id) {

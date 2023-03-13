@@ -1,7 +1,7 @@
 import ReactPlayer, { ReactPlayerProps } from 'react-player';
 const BaseYoutubeURL = 'https://www.youtube.com/watch?v=';
 
-export const Player: React.FC<ReactPlayerProps> = props => {
+export const Player = (props: ReactPlayerProps) => {
   const { url } = props;
   return (
     <ReactPlayer

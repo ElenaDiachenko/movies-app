@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent } from 'react';
+import { useState, MouseEvent } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import { shallow } from 'zustand/shallow';
@@ -11,7 +11,7 @@ import { Like } from './LikeBtn.styled';
 type LikeBtnProps = {
   movie: IMovieData;
 };
-export const LikeBtn: FC<LikeBtnProps> = ({ movie }) => {
+export const LikeBtn = ({ movie }: LikeBtnProps) => {
   const { id, title, poster_path, saved } = movie;
   const [like, setLike] = useState(saved);
 

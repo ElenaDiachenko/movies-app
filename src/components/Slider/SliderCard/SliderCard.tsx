@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { motion } from 'framer-motion';
@@ -17,10 +16,10 @@ import {
 import { LikeBtn } from 'components/LikeBtn/LikeBtn';
 import { IMovieData } from 'interfaces/IMovieData';
 
-interface SliderCardProps {
+type SliderCardProps = {
   movie: IMovieData;
-}
-export const SliderCard: FC<SliderCardProps> = ({ movie }) => {
+};
+export const SliderCard = ({ movie }: SliderCardProps) => {
   const { id, title, poster_path } = movie;
   const { user } = useStore(
     state => ({
