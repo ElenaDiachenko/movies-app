@@ -12,16 +12,16 @@ import {
   Left,
   Right,
 } from './Slider.styled';
-import { IMovieData } from 'interfaces/IMovieData';
+import { MovieItemType } from 'interfaces/MovieDataTypes';
 import { SkeletonCard } from './SkeletonCard';
 
-type SliderPropsType={
+type SliderPropsType = {
   title: string;
-  fetchData: () => Promise<IMovieData[]>;
-}
+  fetchData: () => Promise<MovieItemType[]>;
+};
 
-export const Slider = memo(({ title, fetchData }:SliderPropsType) => {
-  const [movies, setMovies] = useState<IMovieData[] | []>([]);
+export const Slider = memo(({ title, fetchData }: SliderPropsType) => {
+  const [movies, setMovies] = useState<MovieItemType[] | []>([]);
   const [status, setStatus] = useState('idle');
   const [width, setWidth] = useState(0);
   const dragSlider = useRef<HTMLDivElement>(null);
@@ -31,8 +31,6 @@ export const Slider = memo(({ title, fetchData }:SliderPropsType) => {
       setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
     }
   }, [dragSlider]);
-
-
 
   useEffect(() => {
     try {

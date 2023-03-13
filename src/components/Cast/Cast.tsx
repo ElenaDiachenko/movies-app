@@ -7,11 +7,11 @@ import { Loader } from 'components/Loader/Loader';
 import { requests } from 'services/API';
 import { IMG_PATH } from '../../pages/Movies';
 import bgImage from '../../images/image.png';
-import { ICastData } from 'interfaces/IMovieData';
+import { CastDataType } from 'interfaces/MovieDataTypes';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast, setCast] = useState<ICastData[] | []>([]);
+  const [cast, setCast] = useState<CastDataType[] | []>([]);
   const [status, setStatus] = useState('idle');
 
   useEffect(() => {

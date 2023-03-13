@@ -13,9 +13,9 @@ import {
   Link,
 } from './MovieCard.styled';
 import { Loader } from 'components/Loader/Loader';
-import { IMovieByIdData } from 'interfaces/IMovieData';
+import { MovieByIdDataType } from 'interfaces/MovieDataTypes';
 
-export const MovieCard = ({ movie }: { movie: IMovieByIdData }) => {
+export const MovieCard = ({ movie }: { movie: MovieByIdDataType }) => {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movie;
 

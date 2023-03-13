@@ -6,7 +6,7 @@ import { requests } from 'services/API';
 import { MovieCard } from 'components/MovieCart/MovieCard';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
-import { IMovieByIdData } from 'interfaces/IMovieData';
+import { MovieByIdDataType } from 'interfaces/MovieDataTypes';
 import { AxiosError } from 'axios';
 
 export type LocationProps = {
@@ -17,7 +17,7 @@ export type LocationProps = {
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState<IMovieByIdData>();
+  const [movie, setMovie] = useState<MovieByIdDataType>();
   const [status, setStatus] = useState('idle');
   const location = useLocation() as unknown as LocationProps;
   const backLinkHref = location.state?.from ?? '/movies';

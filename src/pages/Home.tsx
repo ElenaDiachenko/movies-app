@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { requests } from 'services/API';
+import { requests, MovieListDataType } from 'services/API';
 import { movieRows } from 'utils/constants';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { MoviesList } from '../components/MoviesList/MoviesList';
@@ -9,14 +9,13 @@ import { LoadMoreButton } from 'components/LoadMoreButton/LoadMoreButton';
 import { Loader } from 'components/Loader/Loader';
 import { Box } from 'components/Box';
 import { AxiosError } from 'axios';
-import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
 import { Slider } from 'components/Slider/Slider';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
   const [totalMovies, setTotalMovies] = useState<number | 0>(0);
-  const [movies, setMovies] = useState<IMovieData[] | []>([]);
+  const [movies, setMovies] = useState<MovieListDataType | []>([]);
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
   const movieQuery = searchParams.get('query');
@@ -28,8 +27,10 @@ const Movies = () => {
     try {
       setStatus('pending');
       (async function getMovies() {
-        const { results, total_pages }: IMovieDataByKeyword =
-          await requests.fetchMoviesByKeyword(movieQuery, page);
+        const { total_pages, results } = await requests.fetchMoviesByKeyword(
+          movieQuery,
+          page
+        );
         if (results.length === 0) {
           setStatus('rejected');
           toast.info(

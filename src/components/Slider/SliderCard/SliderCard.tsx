@@ -14,10 +14,10 @@ import {
   Title,
 } from './SliderCard.styled';
 import { LikeBtn } from 'components/LikeBtn/LikeBtn';
-import { IMovieData } from 'interfaces/IMovieData';
+import { MovieItemType } from 'interfaces/MovieDataTypes';
 
 type SliderCardProps = {
-  movie: IMovieData;
+  movie: MovieItemType;
 };
 export const SliderCard = ({ movie }: SliderCardProps) => {
   const { id, title, poster_path } = movie;

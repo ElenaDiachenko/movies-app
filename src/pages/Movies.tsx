@@ -3,11 +3,10 @@ import { AxiosError } from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { SearchBar } from '../components/SearchBar/SearchBar';
-import { IMovieData, IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { IGenre } from 'interfaces/IGenresData';
 import { IFormValues } from 'components/SearchBar/SearchBar';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-import { requests } from 'services/API';
+import { requests, MovieListDataType } from 'services/API';
 import { Box } from 'components/Box';
 import { Genres } from 'components/Genres/Genres';
 import { Loader } from 'components/Loader/Loader';
@@ -16,7 +15,7 @@ import { useGenre } from 'hooks';
 export const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 const Home = () => {
-  const [movies, setMovies] = useState<IMovieData[] | []>([]);
+  const [movies, setMovies] = useState<MovieListDataType | []>([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
   const [totalMovies, setTotalMovies] = useState(0);
@@ -94,8 +93,10 @@ const Home = () => {
     try {
       setStatus('pending');
       (async function getMovies() {
-        const { results, total_pages }: IMovieDataByKeyword =
-          await requests.fetchMoviesByKeyword(movieQuery, page);
+        const { results, total_pages } = await requests.fetchMoviesByKeyword(
+          movieQuery,
+          page
+        );
         if (results.length === 0) {
           setStatus('rejected');
           toast.info(
