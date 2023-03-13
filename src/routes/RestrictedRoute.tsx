@@ -1,18 +1,18 @@
-import { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 import { useStore } from 'stores/store';
 
-interface IProps {
+type RestrictedRouteProps = {
   component: ReactElement;
   redirectTo?: string;
-}
+};
 
-const RestrictedRoute: FC<IProps> = ({
+const RestrictedRoute = ({
   component: Component,
   redirectTo = '/movies',
-}) => {
+}: RestrictedRouteProps) => {
   const authUser = useStore(state => state.authUser, shallow);
 
   return authUser ? <Navigate to={redirectTo} /> : Component;
