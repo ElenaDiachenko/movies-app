@@ -2,7 +2,6 @@ import axios from './instanceAxios';
 import { getTransformedArray } from 'utils/getTransformedArray';
 import { IMoviesDTO, ResultDTO } from 'interfaces/IMoviesDTO';
 import { IMovieByIdDTO } from 'interfaces/IMovieByIdTDO';
-// import { IMovieDataByKeyword } from 'interfaces/IMovieData';
 import { ICreditsDTO } from 'interfaces/ICreditsDTO';
 import { IReviewsDTO } from 'interfaces/IReviewsDTO';
 import { IVideoDTO } from 'interfaces/IVideoDTO';
@@ -58,20 +57,6 @@ const fetchMoviesByKeyword = async (query: string, page: number) => {
   const { data } = await axios.get<IMoviesDTO>(
     `search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
   );
-  // const transformedData = {
-  //   total_pages: data.total_pages,
-  //   results: data.results.map(it => ({
-  //     id: it.id,
-  //     poster_path: it.poster_path,
-  //     title: it.title,
-  //     release_date: it.release_date,
-  //     vote_average: it.vote_average,
-  //     overview: it.overview,
-  //     genre_ids: it.genre_ids,
-  //   })),
-  // };
-
-  // return transformedData;
   const transformedData = getBaseTransformedData(data.results);
   return { total_pages: data.total_pages, results: transformedData };
 };
